@@ -37,9 +37,14 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - **W** (wing): innermost eligible becomes a detached wing (H) just off the last man
   on the line (tight to the tackle when there's no TE). 4W = X wide + H wing.
 - Tags: D/P/L/R (1 back) · F/I/K/Q/S/T/TS/KG/QG (2 backs). **Gun is assumed unless
-  I, K, Q, F, or D is explicitly called.** K (King) = tailback in the Dot spot with
-  the fullback offset to strength. T = halfback up level with the fullback, weak
-  side; TS = same but strong side. KG/QG = King/Queen from the gun.
+  I, K, Q, F, or D is explicitly called.** The single back in gun is labeled T
+  (D and P stay R). K (King) = tailback in the Dot spot with the fullback offset
+  to strength in the guard–tackle gap. Q (Queen) = King's mirror: fullback opposite
+  strength, tailback straight behind the QB but deeper than the Dot. KG/QG =
+  King/Queen from the gun; there the tailback offsets beside the QB — to strength
+  in QG, away from it in KG (opposite the fullback). **King and Queen are mirrors:
+  any markup fix to one applies flipped to the other, including the G versions.**
+  T = halfback up level with the fullback, weak side; TS = same but strong side.
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
   he covers the TE (lands on the line just outside him) when crossing to a 1/3/5
   side. Squished `12UB` is reserved for a future meaning and must stay rejected.
