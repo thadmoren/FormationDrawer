@@ -76,7 +76,10 @@
     <div class="chips" id="recent" style="margin:0"></div>
   </div>
 
-  <div class="chips" id="chips"></div>
+  <div class="recent-wrap">
+    <span class="recent-label">Basic</span>
+    <div class="chips" id="chips" style="margin:0"></div>
+  </div>
   <div id="msg"></div>
   <canvas id="cv"></canvas>
 
@@ -87,7 +90,7 @@
       <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8) — put it right after the number: 24B, 8W3</td></tr>
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over (covers the TE on a 1/3/5 side)</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
-      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side</td></tr>
+      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun</td></tr>
       <tr><td><b>Rules</b></td><td>Backs = 5 − total surface eligibles. 2 elig = 3 backs (no tag) · 5 elig = empty (no tag) · 6 elig = ILLEGAL</td></tr>
     </table>
   </details>
@@ -120,6 +123,8 @@ const TAGS = {
   S:{backs:2, qb:"gun",    name:"Split (gun)"},
   T:{backs:2, qb:"uc",     name:"T formation"},
   TS:{backs:2, qb:"uc",    name:"T Strong"},
+  KG:{backs:2, qb:"gun",   name:"King Gun"},
+  QG:{backs:2, qb:"gun",   name:"Queen Gun"},
 };
 
 /* Eligible receiver layouts per surface number.
@@ -170,6 +175,8 @@ function backfieldLayout(tag, nBacks, str) {
     case "S": return {qb:{u:0, d:QB.gun},    backs:[{u:-1.5, d:4.4, lab:"F"}, {u:1.5, d:4.4, lab:"T"}]};
     case "T": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.3, lab:"F"}, {u:-str*1.8, d:3.3, lab:"T"}]};
     case "TS": return {qb:{u:0, d:QB.uc},    backs:[{u:0, d:3.3, lab:"F"}, {u:str*1.8, d:3.3, lab:"T"}]};
+    case "KG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.4, d:3.0, lab:"F"}, {u:0, d:5.9, lab:"T"}]};
+    case "QG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.9, d:2.8, lab:"F"}, {u:str*1.2, d:5.1, lab:"T"}]};
   }
 }
 
@@ -181,7 +188,7 @@ function parseCall(raw) {
   const ub = /\sUB$/.test(s);          // UB is its own word at the end
   if (ub) s = s.replace(/\sUB$/, "");
   s = s.replace(/[\s\-\.\/]+/g, "");
-  const m = s.match(/^([1-8])([BW])?([1-8])([BW])?(TS|[DPLRFIKQST])?$/);
+  const m = s.match(/^([1-8])([BW])?([1-8])([BW])?(TS|QG|KG|[DPLRFIKQST])?$/);
   if (!m) return {err:"Can't read that call. Format: <left#><mod?><right#><mod?> <tag?>, UB last with a space — e.g. 24B I, 38W, 24 K UB"};
 
   const left  = {n:+m[1], mod:m[2] || null};
@@ -405,7 +412,7 @@ input.addEventListener("blur", recordRecent);
 renderRecent();
 
 
-const EXAMPLES = ["24B I", "28W L", "47B P", "38W S", "24 K UB", "18B L UB", "22", "14B I", "37", "88"];
+const EXAMPLES = ["18 R", "23 T", "44 R", "44W L", "14 I", "24 QG", "18B D", "51 I", "34 R", "27 L"];
 const chips = document.getElementById("chips");
 for (const ex of EXAMPLES) {
   const c = document.createElement("button");
