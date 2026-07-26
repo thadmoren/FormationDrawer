@@ -26,7 +26,7 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
 | 5 | TE / Pro | 2 |
 | 6 | Inverted Twins | 2 |
 | 7 | Trey | 3 |
-| 8 | Trips | 3 |
+| 8 | Trips (W–Z–X going out from the middle, X on line) | 3 |
 
 ### Modifiers (right after the number)
 

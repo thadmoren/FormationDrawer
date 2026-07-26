@@ -136,12 +136,12 @@ function surfaceLayout(n, mod) {
     if (n === 5) return [{u:3.0, off:false, lab:"Y"}, {u:4.6, off:true, lab:"H"}];
     if (n === 4) return [{u:3.9, off:false, lab:"X"}, {u:2.8, off:true, lab:"Z"}];
     if (n === 7) return [{u:5.6, off:false, lab:"Y"}, {u:4.7, off:true, lab:"H"}, {u:6.5, off:true, lab:"Z"}];
-    if (n === 8) return [{u:4.0, off:false, lab:"Z"}, {u:2.6, off:true, lab:"H"}, {u:3.4, off:true, lab:"W"}];
+    if (n === 8) return [{u:4.0, off:false, lab:"X"}, {u:2.5, off:true, lab:"W"}, {u:3.5, off:true, lab:"Z"}];
   }
   if (mod === "W") {           // wing: innermost becomes a detached wing (H)
     if (n === 4) return [{u:7.2, off:false, lab:"X"}, {u:2.9, off:true, lab:"H"}];
     if (n === 7) return [{u:3.0, off:false, lab:"Y"}, {u:4.0, off:true, lab:"H"}, {u:7.2, off:false, lab:"Z"}];
-    if (n === 8) return [{u:7.2, off:false, lab:"Z"}, {u:5.5, off:true, lab:"W"}, {u:3.7, off:true, lab:"H"}];
+    if (n === 8) return [{u:7.2, off:false, lab:"X"}, {u:5.5, off:true, lab:"Z"}, {u:3.7, off:true, lab:"H"}];
   }
   switch (n) {
     case 1: return [{u:3.0, off:false, lab:"Y"}];
@@ -151,7 +151,7 @@ function surfaceLayout(n, mod) {
     case 5: return [{u:3.0, off:false, lab:"Y"}, {u:4.4, off:true, lab:"H"}];
     case 6: return [{u:5.0, off:false, lab:"Z"}, {u:7.2, off:true, lab:"H"}];
     case 7: return [{u:3.0, off:false, lab:"Y"}, {u:5.0, off:true, lab:"H"}, {u:7.2, off:true, lab:"Z"}];
-    case 8: return [{u:7.2, off:false, lab:"Z"}, {u:5.2, off:true, lab:"W"}, {u:3.6, off:true, lab:"H"}];
+    case 8: return [{u:7.2, off:false, lab:"X"}, {u:5.2, off:true, lab:"Z"}, {u:3.6, off:true, lab:"W"}];
   }
 }
 
