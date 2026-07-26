@@ -51,8 +51,9 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   and the empty 5-eligible combos) default strength to the right side; the owner
   called those "difficult to determine". Table lives in `STR_WINNER`.
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
-  he covers the TE (lands on the line just outside him) when crossing to a 1/3/5
-  side. Squished `12UB` is reserved for a future meaning and must stay rejected.
+  he stays on the line and lands FAR — a wide split (7.2u), or one unit outside
+  the widest on-line man if that's wider. Covers the TE on a 1/3/5 side.
+  Squished `12UB` is reserved for a future meaning and must stay rejected.
 - The embedded reference chart has two known self-inconsistencies (its `47B P` and
   `38W S` example rows contradict its own back-count math); the math wins.
 

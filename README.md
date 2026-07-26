@@ -59,7 +59,7 @@ Doubles (11, 22, …), 46, and the empty combos default strength to the right.
 - 2 eligibles → 3 backs (full house, no tag) · 5 eligibles → empty (no tag) ·
   6 eligibles → **ILLEGAL**.
 - **UB** (own word, last, space before): unbalanced — calls the opposite X over;
-  he covers the TE when crossing to a 1/3/5 side.
+  he stays on the line and splits out far, covering the TE on a 1/3/5 side.
 
 ## Files
 
