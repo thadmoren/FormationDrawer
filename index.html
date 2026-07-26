@@ -133,7 +133,7 @@ const TAGS = {
 function surfaceLayout(n, mod) {
   if (mod === "B") {           // bunch: condensed cluster (2B/5B: receiver halfway in)
     if (n === 2) return [{u:4.6, off:false, lab:"X"}];
-    if (n === 5) return [{u:3.0, off:false, lab:"Y"}, {u:4.6, off:true, lab:"H"}];
+    if (n === 5) return [{u:3.0, off:false, lab:"Y"}, {u:4.6, off:true, lab:"Z"}];
     if (n === 4) return [{u:3.9, off:false, lab:"X"}, {u:2.8, off:true, lab:"Z"}];
     if (n === 7) return [{u:5.6, off:false, lab:"Y"}, {u:4.7, off:true, lab:"H"}, {u:6.5, off:true, lab:"Z"}];
     if (n === 8) return [{u:4.0, off:false, lab:"X"}, {u:2.5, off:true, lab:"W"}, {u:3.5, off:true, lab:"Z"}];
@@ -148,7 +148,7 @@ function surfaceLayout(n, mod) {
     case 2: return [{u:7.2, off:false, lab:"X"}];
     case 3: return [{u:3.0, off:false, lab:"Y"}, {u:4.1, off:true, lab:"H"}];
     case 4: return [{u:7.2, off:false, lab:"X"}, {u:5.0, off:true, lab:"Z"}];
-    case 5: return [{u:3.0, off:false, lab:"Y"}, {u:4.4, off:true, lab:"H"}];
+    case 5: return [{u:3.0, off:false, lab:"Y"}, {u:8.3, off:true, lab:"Z"}];
     case 6: return [{u:5.0, off:false, lab:"Z"}, {u:7.2, off:true, lab:"H"}];
     case 7: return [{u:3.0, off:false, lab:"Y"}, {u:5.0, off:true, lab:"H"}, {u:7.2, off:true, lab:"Z"}];
     case 8: return [{u:7.2, off:false, lab:"X"}, {u:5.2, off:true, lab:"Z"}, {u:3.6, off:true, lab:"W"}];
@@ -171,12 +171,12 @@ function backfieldLayout(tag, nBacks, str) {
     case "F": return {qb:{u:0, d:QB.uc},     backs:[{u:-1.6, d:3.8, lab:"F"}, {u:1.6, d:3.8, lab:"T"}]};
     case "I": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.2, lab:"F"}, {u:0, d:5.4, lab:"T"}]};
     case "K": return {qb:{u:0, d:QB.uc},     backs:[{u:str*1.4, d:3.0, lab:"F"}, {u:0, d:4.2, lab:"T"}]};
-    case "Q": return {qb:{u:0, d:QB.uc},     backs:[{u:-str*1.9, d:2.8, lab:"F"}, {u:str*1.2, d:5.1, lab:"T"}]};
+    case "Q": return {qb:{u:0, d:QB.uc},     backs:[{u:-str*1.5, d:2.8, lab:"F"}, {u:0, d:5.1, lab:"T"}]};
     case "S": return {qb:{u:0, d:QB.gun},    backs:[{u:-1.5, d:4.4, lab:"F"}, {u:1.5, d:4.4, lab:"T"}]};
     case "T": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.3, lab:"F"}, {u:-str*1.8, d:3.3, lab:"T"}]};
     case "TS": return {qb:{u:0, d:QB.uc},    backs:[{u:0, d:3.3, lab:"F"}, {u:str*1.8, d:3.3, lab:"T"}]};
     case "KG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.4, d:3.0, lab:"F"}, {u:0, d:5.9, lab:"T"}]};
-    case "QG": return {qb:{u:0, d:QB.gun},   backs:[{u:-str*1.9, d:2.8, lab:"F"}, {u:str*1.2, d:5.1, lab:"T"}]};
+    case "QG": return {qb:{u:0, d:QB.gun},   backs:[{u:-str*1.5, d:2.8, lab:"F"}, {u:0, d:5.9, lab:"T"}]};
   }
 }
 
