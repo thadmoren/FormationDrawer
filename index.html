@@ -294,7 +294,11 @@ function drawField(title, subtitle) {
 function drawFormation(p, callText) {
   drawField(callText, meaning(p));
 
-  const str = ELIG[p.right.n] >= ELIG[p.left.n] ? 1 : -1;
+  // strength: the TE side (1/3/5/7); if both or neither, more eligibles, right on ties
+  const hasTE = n => n === 1 || n === 3 || n === 5 || n === 7;
+  const str = hasTE(p.right.n) !== hasTE(p.left.n)
+    ? (hasTE(p.right.n) ? 1 : -1)
+    : (ELIG[p.right.n] >= ELIG[p.left.n] ? 1 : -1);
 
   // offensive line: C G G T T
   const line = [{u:0, lab:"C", style:"square"}, {u:-1, lab:"G"}, {u:1, lab:"G"},
