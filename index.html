@@ -321,9 +321,8 @@ function drawFormation(p, callText) {
     if (onLine.length) {
       const puller = onLine.find(e => e.lab === "X") || onLine.reduce((a, b) => (a.u >= b.u ? a : b));
       from.splice(from.indexOf(puller), 1);
-      const te = to.find(e => !e.off && e.lab === "Y");
       const maxOn = Math.max(2, ...to.filter(e => !e.off).map(e => e.u));
-      to.push({u: te ? te.u + 2.5 : maxOn + 1, off: false, lab: puller.lab});
+      to.push({u: Math.max(maxOn + 1, 7.2), off: false, lab: puller.lab});
     }
   }
   const skill = [];
