@@ -159,15 +159,15 @@ function surfaceLayout(n, mod) {
 function backfieldLayout(tag, nBacks, str) {
   const QB = {uc:0.9, pistol:3.4, gun:4.3};
   if (nBacks === 0) return {qb:{u:0, d:QB.gun}, backs:[]};                       // empty
-  if (!tag && nBacks === 1) return {qb:{u:0, d:QB.gun}, backs:[{u:-str*1.5, d:4.6, lab:"R"}]};
+  if (!tag && nBacks === 1) return {qb:{u:0, d:QB.gun}, backs:[{u:-str*1.5, d:4.6, lab:"T"}]};
   if (!tag && nBacks === 2) return {qb:{u:0, d:QB.gun}, backs:[{u:-1.5, d:4.4, lab:"F"}, {u:1.5, d:4.4, lab:"T"}]};
   if (nBacks === 3) return {qb:{u:0, d:QB.uc}, backs:[                           // full house
     {u:0, d:3.2, lab:"F"}, {u:-1.7, d:5.2, lab:"R"}, {u:1.7, d:5.2, lab:"R"}]};
   switch (tag) {
     case "D": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:4.2, lab:"R"}]};
     case "P": return {qb:{u:0, d:QB.pistol}, backs:[{u:0, d:6.3, lab:"R"}]};
-    case "L": return {qb:{u:0, d:QB.gun},    backs:[{u:-1.5, d:4.6, lab:"R"}]};
-    case "R": return {qb:{u:0, d:QB.gun},    backs:[{u:1.5, d:4.6, lab:"R"}]};
+    case "L": return {qb:{u:0, d:QB.gun},    backs:[{u:-1.5, d:4.6, lab:"T"}]};
+    case "R": return {qb:{u:0, d:QB.gun},    backs:[{u:1.5, d:4.6, lab:"T"}]};
     case "F": return {qb:{u:0, d:QB.uc},     backs:[{u:-1.6, d:3.8, lab:"F"}, {u:1.6, d:3.8, lab:"T"}]};
     case "I": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.2, lab:"F"}, {u:0, d:5.4, lab:"T"}]};
     case "K": return {qb:{u:0, d:QB.uc},     backs:[{u:str*1.4, d:3.0, lab:"F"}, {u:0, d:4.2, lab:"T"}]};
