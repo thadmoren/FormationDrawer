@@ -45,6 +45,11 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   in QG, away from it in KG (opposite the fullback). **King and Queen are mirrors:
   any markup fix to one applies flipped to the other, including the G versions.**
   T = halfback up level with the fullback, weak side; TS = same but strong side.
+- Strength is owner-locked per surface pair (winning surface listed; mirrors flip):
+  12→1 · 13→3 · 14→1 · 15→5 · 16→1 · 17→7 · 18→1 · 23→3 · 24→4 · 25→5 · 26→6 ·
+  27→7 · 28→8 · 34→3 · 35→3 · 36→3 · 45→5 · 56→5. Unlisted pairs (doubles, 46,
+  and the empty 5-eligible combos) default strength to the right side; the owner
+  called those "difficult to determine". Table lives in `STR_WINNER`.
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
   he covers the TE (lands on the line just outside him) when crossing to a 1/3/5
   side. Squished `12UB` is reserved for a future meaning and must stay rejected.

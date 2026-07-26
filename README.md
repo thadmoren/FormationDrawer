@@ -46,6 +46,13 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
   **TS** T-form strong side
 - No tag → shotgun assumed. Under center only when I, K, Q, F, or D is called.
 
+### Strength
+
+The strength side is fixed per surface combo (the winning surface is shown;
+mirrors flip): 12→1 · 13→3 · 14→1 · 15→5 · 16→1 · 17→7 · 18→1 · 23→3 · 24→4 ·
+25→5 · 26→6 · 27→7 · 28→8 · 34→3 · 35→3 · 36→3 · 45→5 · 56→5.
+Doubles (11, 22, …), 46, and the empty combos default strength to the right.
+
 ### Rules
 
 - Backs = 5 − total surface eligibles.

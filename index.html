@@ -294,11 +294,14 @@ function drawField(title, subtitle) {
 function drawFormation(p, callText) {
   drawField(callText, meaning(p));
 
-  // strength: the TE side (1/3/5/7); if both or neither, more eligibles, right on ties
-  const hasTE = n => n === 1 || n === 3 || n === 5 || n === 7;
-  const str = hasTE(p.right.n) !== hasTE(p.left.n)
-    ? (hasTE(p.right.n) ? 1 : -1)
-    : (ELIG[p.right.n] >= ELIG[p.left.n] ? 1 : -1);
+  // Strength winners locked by the owner per surface pair (key: low digit + high digit,
+  // value: the winning surface). Mirrors flip automatically. Pairs not listed
+  // (doubles, 46, and the empty 5-eligible combos) default to the right side.
+  const STR_WINNER = {"12":1, "13":3, "14":1, "15":5, "16":1, "17":7, "18":1,
+                      "23":3, "24":4, "25":5, "26":6, "27":7, "28":8,
+                      "34":3, "35":3, "36":3, "45":5, "56":5};
+  const win = STR_WINNER[[p.left.n, p.right.n].sort().join("")];
+  const str = (win == null || win === p.right.n) ? 1 : -1;
 
   // offensive line: C G G T T
   const line = [{u:0, lab:"C", style:"square"}, {u:-1, lab:"G"}, {u:1, lab:"G"},
