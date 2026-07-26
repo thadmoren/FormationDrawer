@@ -40,7 +40,9 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
 - 1 back: **D** Dot (under center) · **P** Pistol · **L** Gun Left · **R** Gun Right
 - 2 backs: **F** Split (UC) · **I** I-form · **K** King (TB in the Dot spot, FB offset
   to strength) · **Q** Queen (King's mirror — FB opposite strength, TB deep behind
-  QB) · **S** Split (Gun) · **T** T-form (HB up, weak side) ·
+  QB) · **S** Split (Gun) · **SG** gun stack strong (FB to strength, TB stacked
+  behind him) · **FG** gun stack weak (same stack on the weak side) ·
+  **T** T-form (HB up, weak side) ·
   **TS** T-form strong side
 - No tag → shotgun assumed. Under center only when I, K, Q, F, or D is called.
 
