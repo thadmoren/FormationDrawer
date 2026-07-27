@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Formation Drawer</title>
 <style>
   :root {
@@ -59,12 +62,14 @@
   .refsec { margin-top:22px; }
   .refsec h2 { font-size:1rem; text-transform:uppercase; letter-spacing:.5px; color:var(--text); margin-bottom:8px; }
   .refchart { width:100%; height:auto; border-radius:10px; display:block; }
+  .ver { font-size:.72rem; color:var(--muted); opacity:.65; margin-left:6px; white-space:nowrap; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
-  <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.</div>
+  <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
+    <span class="ver">v2026.07.26</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
