@@ -9,7 +9,12 @@ for humans; keep both docs in sync when the system changes.
 ## Where it runs (keep all three in sync)
 
 - **Live site**: https://thadmoren.github.io/FormationDrawer/ — GitHub Pages off `main`
-  (root). Pushing to `main` redeploys it automatically in ~1 minute.
+  (root). Pushing to `main` redeploys it automatically in ~1 minute. The page carries
+  no-cache meta tags and a `.ver` stamp next to the subtitle (`v2026.07.26` style) —
+  **bump it on every push**. When the owner reports a fix that "didn't take", compare
+  the stamp in their screenshot against the current one before touching code: it is
+  usually a stale phone cache, not a bug. Verify with
+  `curl -s https://thadmoren.github.io/FormationDrawer/index.html | grep …`.
 - **Claude artifact** (same app, published from a chat): update it by passing
   `url: https://claude.ai/code/artifact/6b8e536f-9ce3-4419-aff4-abedb40ba874` to the
   Artifact tool. Its copy has no `<html>/<head>/<body>` wrapper — content only.
