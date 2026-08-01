@@ -18,7 +18,7 @@ for humans; keep both docs in sync when the system changes.
 - **Claude artifact** (same app, published from a chat): update it by passing
   `url: https://claude.ai/code/artifact/6b8e536f-9ce3-4419-aff4-abedb40ba874` to the
   Artifact tool. Its copy has no `<html>/<head>/<body>` wrapper — content only.
-- **Mac clone**: `~/Desktop/FormationDrawer` on the owner's iMac (they `git pull`).
+- **Mac clone**: `~/Documents/FormationDrawer` on the owner's iMac (they `git pull`).
   `serve.command` (port 5003) is an optional Tailscale server; the site usually makes
   it unnecessary.
 
