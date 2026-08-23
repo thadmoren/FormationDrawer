@@ -41,6 +41,12 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   with Z tucked inside off the line. On 2 and 5 the receiver splits halfway in.
 - **W** (wing): innermost eligible becomes a detached wing (H) just off the last man
   on the line (tight to the tackle when there's no TE). 4W = X wide + H wing.
+- **P** (Pokémon, 4 and 8 only): the bunch picked up and set out wide. 8P is the
+  three 8B players shifted out +4.2u (X 8.2 on the line, W 6.7 / Z 7.7 off inside
+  him); 4P is X at a normal 7.2 split with Z at 6.1 as an inside wing.
+  **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
+  for a trailing `" P"` *before* stripping: spaced (`18 P`) = Pistol, attached
+  (`18P`) = Pokémon. Don't "simplify" that check away — it silently breaks Pistol.
 - Tags: D/P/L/R (1 back) · F/I/K/Q/S/T/TS/KG/QG (2 backs). **Gun is assumed unless
   I, K, Q, F, or D is explicitly called.** The single back in gun is labeled T
   (D and P stay R). K (King) = tailback in the Dot spot with the fullback offset

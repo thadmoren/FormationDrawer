@@ -34,6 +34,9 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
   splits halfway in.
 - **W** = Wing (4, 7, 8) — innermost eligible becomes a detached wing (H) just off
   the last man on the line. 4W is X wide + H wing.
+- **P** = Pokémon (4, 8) — the bunch picked up and set out wide. 8P is the 8B bunch
+  shifted out about 4.2 units; 4P is the X at normal width with the Z as an inside
+  wing. Write it attached to the number (`18P`); `18 P` with a space is Pistol.
 
 ### Backfield tags
 
