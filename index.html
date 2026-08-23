@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.08.17</span></div>
+    <span class="ver">v2026.08.22</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -326,8 +326,12 @@ function drawFormation(p, callText) {
     if (onLine.length) {
       const puller = onLine.find(e => e.lab === "X") || onLine.reduce((a, b) => (a.u >= b.u ? a : b));
       from.splice(from.indexOf(puller), 1);
-      const maxOn = Math.max(2, ...to.filter(e => !e.off).map(e => e.u));
-      to.push({u: Math.max(maxOn + 1, 7.2), off: false, lab: puller.lab});
+      const maxOn  = Math.max(2, ...to.filter(e => !e.off).map(e => e.u));
+      const maxAny = Math.max(maxOn, ...to.map(e => e.u));
+      const xu = Math.min(Math.max(maxAny + 1.0, 9.4), 9.6);   // X out wide, inside the canvas edge (~9.9)
+      to.push({u: xu, off: false, lab: puller.lab});
+      // flanker (Z) sits off the ball halfway between the last on-line man and X
+      for (const e of to) if (e.off && e.u > 4.5) e.u = (maxOn + xu) / 2;
     }
   }
   const skill = [];
