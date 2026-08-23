@@ -39,13 +39,13 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   eligibles; 2 elig = full house, 5 = empty, 6 = ILLEGAL.
 - **B** (bunch): tight to the tackle — 4B is X on the line just outside the tackle
   with Z tucked inside off the line. 8B is the same **triangle** as 8P but tight:
-  X the point on the line at 4.0, W (2.8) and Z (5.2) winging off him on both sides.
+  X the point on the line at 4.0, W (3.2) and Z (4.8) winging off him on both sides.
   On 2 and 5 the receiver splits halfway in.
 - **W** (wing): innermost eligible becomes a detached wing (H) just off the last man
   on the line (tight to the tackle when there's no TE). 4W = X wide + H wing.
 - **P** (Pokémon, 4 and 8 only): the bunch picked up and set out wide. 8P is the
   bunch out where the X normally splits, formed as a **triangle**: X is the point on
-  the line at 7.2 with W (6.0) and Z (8.4) winging off him on *both* sides, one
+  the line at 7.2 with W (6.4) and Z (8.0) winging off him on *both* sides, one
   inside and one outside. 4P is X at a normal 7.2 split with Z at 6.1 as an inside
   wing.
   **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
