@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.08.22b</span></div>
+    <span class="ver">v2026.08.22c</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -146,7 +146,7 @@ function surfaceLayout(n, mod) {
     if (n === 8) return [{u:4.0, off:false, lab:"X"}, {u:2.5, off:true, lab:"W"}, {u:3.5, off:true, lab:"Z"}];
   }
   if (mod === "P") {           // Pokemon: the bunch picked up and set out wide
-    if (n === 8) return [{u:8.2, off:false, lab:"X"}, {u:6.7, off:true, lab:"W"}, {u:7.7, off:true, lab:"Z"}];
+    if (n === 8) return [{u:7.2, off:false, lab:"X"}, {u:6.0, off:true, lab:"W"}, {u:8.4, off:true, lab:"Z"}];
     if (n === 4) return [{u:7.2, off:false, lab:"X"}, {u:6.1, off:true, lab:"Z"}];
   }
   if (mod === "W") {           // wing: innermost becomes a detached wing (H)

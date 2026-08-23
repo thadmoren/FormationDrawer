@@ -42,8 +42,10 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - **W** (wing): innermost eligible becomes a detached wing (H) just off the last man
   on the line (tight to the tackle when there's no TE). 4W = X wide + H wing.
 - **P** (Pokémon, 4 and 8 only): the bunch picked up and set out wide. 8P is the
-  three 8B players shifted out +4.2u (X 8.2 on the line, W 6.7 / Z 7.7 off inside
-  him); 4P is X at a normal 7.2 split with Z at 6.1 as an inside wing.
+  bunch out where the X normally splits, formed as a **triangle**: X is the point on
+  the line at 7.2 with W (6.0) and Z (8.4) winging off him on *both* sides, one
+  inside and one outside. 4P is X at a normal 7.2 split with Z at 6.1 as an inside
+  wing.
   **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
   for a trailing `" P"` *before* stripping: spaced (`18 P`) = Pistol, attached
   (`18P`) = Pokémon. Don't "simplify" that check away — it silently breaks Pistol.
