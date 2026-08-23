@@ -30,8 +30,9 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
 
 ### Modifiers (right after the number)
 
-- **B** = Bunch (4, 7, 8) — condensed tight to the tackle. On 2 and 5, the receiver
-  splits halfway in.
+- **B** = Bunch (4, 7, 8) — condensed tight to the tackle. 8B is a triangle: X the
+  point on the line with W and Z winging off him on both sides. On 2 and 5, the
+  receiver splits halfway in.
 - **W** = Wing (4, 7, 8) — innermost eligible becomes a detached wing (H) just off
   the last man on the line. 4W is X wide + H wing.
 - **P** = Pokémon (4, 8) — the bunch picked up and set out wide. 8P is a triangle

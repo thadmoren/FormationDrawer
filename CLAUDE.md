@@ -38,7 +38,9 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   Z slot) · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips. Backs = 5 − total
   eligibles; 2 elig = full house, 5 = empty, 6 = ILLEGAL.
 - **B** (bunch): tight to the tackle — 4B is X on the line just outside the tackle
-  with Z tucked inside off the line. On 2 and 5 the receiver splits halfway in.
+  with Z tucked inside off the line. 8B is the same **triangle** as 8P but tight:
+  X the point on the line at 4.0, W (2.8) and Z (5.2) winging off him on both sides.
+  On 2 and 5 the receiver splits halfway in.
 - **W** (wing): innermost eligible becomes a detached wing (H) just off the last man
   on the line (tight to the tackle when there's no TE). 4W = X wide + H wing.
 - **P** (Pokémon, 4 and 8 only): the bunch picked up and set out wide. 8P is the
