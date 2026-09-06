@@ -51,7 +51,10 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
   for a trailing `" P"` *before* stripping: spaced (`18 P`) = Pistol, attached
   (`18P`) = Pokémon. Don't "simplify" that check away — it silently breaks Pistol.
-- Tags: D/P/L/R (1 back) · F/I/K/Q/S/T/TS/KG/QG (2 backs). **Gun is assumed unless
+- Tags: D/P/L/R (1 back) · F/I/K/Q/S/T/TS/KG/QG/SG/WG (2 backs). SG/WG are the
+  gun stacks (fullback with the tailback directly behind him) — SG to strength,
+  WG away from it. **`FG` is a legacy alias for WG**: the owner first named it FG,
+  then corrected it to WG, so both parse. Keep FG working. **Gun is assumed unless
   I, K, Q, F, or D is explicitly called.** The single back in gun is labeled T
   (D and P stay R). K (King) = tailback in the Dot spot with the fullback offset
   to strength in the guard–tackle gap. Q (Queen) = King's mirror: fullback opposite
