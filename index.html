@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13b</span></div>
+    <span class="ver">v2026.09.13c</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -94,7 +94,7 @@
       <tr><td><b>Surfaces</b></td><td>1 TE · 2 WR · 3 TE/Wing · 4 Twins · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips</td></tr>
       <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8), P = Pokémon (4, 8 — the bunch set out wide) — put it right after the number: 24B, 8W3, 18P</td></tr>
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
-      <tr><td><b>TO</b></td><td>Backside TE crosses over and stacks on the line (17W L TO) — that side reads G T Y Y, the side he left is bare. Needs a TE on the backside</td></tr>
+      <tr><td><b>TO</b></td><td>Even side's WR crosses over as a 2nd tight end (27W L TO) — that side reads G T Y Y, the side he left is bare. Needs one odd surface and one even</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
       <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak</td></tr>
       <tr><td><b>Rules</b></td><td>Backs = 5 − total surface eligibles. 2 elig = 3 backs (no tag) · 5 elig = empty (no tag) · 6 elig = ILLEGAL</td></tr>
@@ -242,9 +242,15 @@ function parseCall(raw) {
   // TO sends the backside TE across to stack beside the strength side's last
   // lineman, so it needs an odd (TE-bearing) surface on the back side. Like UB it
   // only moves a player, so the eligible count and back count are unchanged.
+  // TO: exactly one odd surface (the TE being doubled) and one even (the WR who
+  // crosses to become the second Y). Two odds would leave it ambiguous which TE
+  // travels; two evens have no TE to double.
   if (to) {
-    if (left.n % 2 === 0 || right.n % 2 === 0) {
-      warns.push(`TO needs odd surfaces on both sides (1, 3, 5, 7) — ${left.n}${right.n} has an even one. Ignoring it.`);
+    const odds = (left.n % 2) + (right.n % 2);
+    if (odds !== 1) {
+      warns.push(odds === 2
+        ? `TO needs one even surface to send a receiver over — ${left.n}${right.n} is odd on both sides. Ignoring it.`
+        : `TO needs an odd surface with a tight end to double — ${left.n}${right.n} has none. Ignoring it.`);
       to = false;
     }
   }
@@ -348,10 +354,11 @@ function drawFormation(p, callText) {
   const sides = {"-1": surfaceLayout(p.left.n, p.left.mod),
                  "1":  surfaceLayout(p.right.n, p.right.mod)};
   if (p.to) {
-    // TO: the backside TE crosses and stacks on the line beside the strength side's
-    // last lineman — that side keeps everyone it had, the donor side is left bare
-    const from = sides[String(-str)], dest = sides[String(str)];
-    const y = from.find(e => !e.off && e.lab === "Y")
+    // TO: the even side's receiver crosses and stacks on the line as a second TE
+    // beside the odd side's Y. The TE side keeps everyone it had.
+    const oddSign = p.left.n % 2 === 1 ? -1 : 1;
+    const from = sides[String(-oddSign)], dest = sides[String(oddSign)];
+    const y = from.find(e => !e.off && e.lab === "X")
            || from.filter(e => !e.off).reduce((a, b) => (a && a.u >= b.u ? a : b), null);
     if (y) {
       from.splice(from.indexOf(y), 1);
