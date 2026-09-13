@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.06e</span></div>
+    <span class="ver">v2026.09.06f</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -359,10 +359,13 @@ function drawFormation(p, callText) {
       const lastOn = Math.max(2, ...dest.filter(e => !e.off).map(e => e.u));
       const yu = lastOn + 1.1;
       dest.push({u: yu, off:false, lab:"Y"});
-      // the wing re-anchors to the new last man on the line — out on the flank,
-      // outside BOTH tight ends, not tucked in between them
-      dest.filter(e => e.off && e.u <= yu).sort((a, b) => a.u - b.u)
-          .forEach((e, i) => { e.u = yu + 1.1 * (i + 1); });
+      // everyone off the ball slides out with the line so the side keeps its shape
+      // (a 7W still looks like a 7W, just one man wider), capped at a real split
+      dest.filter(e => e.off).forEach(e => { e.u = Math.min(e.u + 1.1, 8.6); });
+      // anyone still inside the new last lineman flanks outside him instead
+      const off = dest.filter(e => e.off).sort((a, b) => a.u - b.u);
+      if (off.some(e => e.u <= yu))
+        off.forEach((e, i) => { e.u = Math.max(e.u, yu + 1.1 * (i + 1)); });
     }
   }
   if (p.ub) {
