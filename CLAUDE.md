@@ -74,7 +74,8 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   stacks on the line just outside its last lineman, giving a 4-man surface that reads
   **G T Y Y**. The receiving side keeps everyone it already had (in `17W L TO` the
   7 keeps its Y/H/Z and the extra Y stacks on); **the donor side is left bare — just
-  T G**. Only a player moves, so eligible and back counts are unchanged.
+  T G**. A wing on the receiving side re-anchors to the new last man on the line,
+  so he flanks **outside both Y's** rather than tucking between them. Only a player moves, so eligible and back counts are unchanged.
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
   he stays on the line and lands FAR — a wide split (7.2u), or one unit outside
   the widest on-line man if that's wider. Covers the TE on a 1/3/5 side.
