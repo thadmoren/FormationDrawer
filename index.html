@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.06f</span></div>
+    <span class="ver">v2026.09.13</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -243,9 +243,9 @@ function parseCall(raw) {
   // lineman, so it needs an odd (TE-bearing) surface on the back side. Like UB it
   // only moves a player, so the eligible count and back count are unchanged.
   if (to) {
-    const weak = strengthSign(left.n, right.n) === 1 ? left : right;
-    if (weak.n % 2 === 0) {
-      warns.push(`TO needs a tight end on the backside — ${weak.n} has none. Ignoring it.`);
+    const strong = strengthSign(left.n, right.n) === 1 ? right : left;
+    if (strong.n % 2 === 0) {
+      warns.push(`TO doubles a tight end, and ${strong.n} has none. Ignoring it.`);
       to = false;
     }
   }
@@ -353,7 +353,7 @@ function drawFormation(p, callText) {
     // last lineman — that side keeps everyone it had, the donor side is left bare
     const from = sides[String(-str)], dest = sides[String(str)];
     const y = from.find(e => !e.off && e.lab === "Y")
-           || from.filter(e => !e.off).sort((a, b) => a.u - b.u)[0];
+           || from.filter(e => !e.off).reduce((a, b) => (a && a.u >= b.u ? a : b), null);
     if (y) {
       from.splice(from.indexOf(y), 1);
       const lastOn = Math.max(2, ...dest.filter(e => !e.off).map(e => e.u));
