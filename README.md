@@ -64,6 +64,9 @@ Doubles (11, 22, …), 46, and the empty combos default strength to the right.
 - Backs = 5 − total surface eligibles.
 - 2 eligibles → 3 backs (full house, no tag) · 5 eligibles → empty (no tag) ·
   6 eligibles → **ILLEGAL**.
+- **TO** (own word, last, like UB): two TEs side by side on an **odd** surface —
+  the inside receiver becomes a second Y, so that line reads `G T Y Y`. TO goes with
+  odd surfaces, UB with even ones. e.g. `17W L TO`.
 - **UB** (own word, last, space before): unbalanced — calls the opposite X over;
   he stays on the line and splits out far, covering the TE on a 1/3/5 side.
 

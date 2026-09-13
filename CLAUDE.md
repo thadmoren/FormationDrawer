@@ -68,6 +68,13 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   27→7 · 28→8 · 34→3 · 35→3 · 36→3 · 45→5 · 56→5. Unlisted pairs (doubles, 46,
   and the empty 5-eligible combos) default strength to the right side; the owner
   called those "difficult to determine". Table lives in `STR_WINNER`.
+- **TO**: its own word, last, like UB (`17W L TO`). **TO pairs with ODD surfaces
+  (1/3/5/7), UB with evens** — odd sides have the Y, even sides have the X. TO puts a
+  second TE on the line beside the first so that side's line reads **G T Y Y** (a
+  4-man surface). The side's innermost off-line receiver comes off to pay for him, so
+  the eligible count and back count are unchanged. On a bare 1 there is nobody to
+  convert, so that side gains an eligible and loses a back. When both sides are odd,
+  TO takes the one with a receiver to convert (`17W L TO` → the 7 side).
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
   he stays on the line and lands FAR — a wide split (7.2u), or one unit outside
   the widest on-line man if that's wider. Covers the TE on a 1/3/5 side.

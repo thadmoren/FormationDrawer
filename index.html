@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.06b</span></div>
+    <span class="ver">v2026.09.06c</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -93,7 +93,8 @@
     <table>
       <tr><td><b>Surfaces</b></td><td>1 TE · 2 WR · 3 TE/Wing · 4 Twins · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips</td></tr>
       <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8), P = Pokémon (4, 8 — the bunch set out wide) — put it right after the number: 24B, 8W3, 18P</td></tr>
-      <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over (covers the TE on a 1/3/5 side)</td></tr>
+      <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
+      <tr><td><b>TO</b></td><td>Two tight ends side by side on an odd surface (17W L TO) — the inside receiver becomes a second Y, so the line reads G T Y Y</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
       <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak</td></tr>
       <tr><td><b>Rules</b></td><td>Backs = 5 − total surface eligibles. 2 elig = 3 backs (no tag) · 5 elig = empty (no tag) · 6 elig = ILLEGAL</td></tr>
@@ -200,14 +201,18 @@ function backfieldLayout(tag, nBacks, str) {
 function parseCall(raw) {
   let s = raw.toUpperCase().trim();
   if (!s) return {err:""};
-  const ub = /\sUB$/.test(s);          // UB is its own word at the end
-  if (ub) s = s.replace(/\sUB$/, "");
+  let ub = false, to = false;          // UB and TO are trailing words, either order
+  for (let i = 0; i < 2; i++) {
+    if (/\sTO$/.test(s)) { to = true; s = s.replace(/\sTO$/, ""); continue; }
+    if (/\sUB$/.test(s)) { ub = true; s = s.replace(/\sUB$/, ""); continue; }
+    break;
+  }
   // A trailing " P" with a space is the Pistol tag; "4P" attached to a number is the
   // Pokemon modifier. Spaces vanish on the next line, so settle it while they exist.
   const mod2 = /\sP$/.test(s) ? "[BW]" : "[BWP]";
   s = s.replace(/[\s\-\.\/]+/g, "");
   const m = s.match(new RegExp(`^([1-8])([BWP])?([1-8])(${mod2})?(TS|QG|KG|SG|WG|FG|[DPLRFIKQST])?$`));
-  if (!m) return {err:"Can't read that call. Format: <left#><mod?><right#><mod?> <tag?>, UB last with a space — e.g. 24B I, 38W, 48P, 24 K UB"};
+  if (!m) return {err:"Can't read that call. Format: <left#><mod?><right#><mod?> <tag?>, UB/TO last with a space — e.g. 24B I, 38W, 48P, 24 K UB, 17W L TO"};
 
   const left  = {n:+m[1], mod:m[2] || null};
   const right = {n:+m[3], mod:m[4] || null};
@@ -223,7 +228,20 @@ function parseCall(raw) {
     }
   }
 
-  const total = ELIG[left.n] + ELIG[right.n];
+  // TO doubles the TE on an odd surface (UB is the even-surface counterpart). It
+  // prefers a side with an inside receiver to convert, so the eligible count holds;
+  // on a bare 1 there is nobody to convert, so that side gains an eligible.
+  let toSign = null;
+  if (to) {
+    const cands = [];
+    if (left.n % 2 === 1) cands.push(-1);
+    if (right.n % 2 === 1) cands.push(1);
+    if (!cands.length) { warns.push("TO needs an odd surface (1, 3, 5, 7) — ignoring it."); to = false; }
+    else toSign = cands.find(sg => ELIG[(sg === -1 ? left : right).n] > 1) ?? cands[0];
+  }
+  const toAdds = toSign !== null && ELIG[(toSign === -1 ? left : right).n] === 1 ? 1 : 0;
+
+  const total = ELIG[left.n] + ELIG[right.n] + toAdds;
   if (total > 5) return {err:`${left.n}${right.n} is ILLEGAL — ${total} surface eligibles (max is 5).`, illegal:true, left, right};
   const backs = 5 - total;
 
@@ -236,7 +254,7 @@ function parseCall(raw) {
     tag = null;
   }
 
-  return {left, right, ub, tag, backs, total, warns};
+  return {left, right, ub, to, toSign, tag, backs, total, warns};
 }
 
 function meaning(p) {
@@ -244,6 +262,7 @@ function meaning(p) {
                      s.mod === "P" ? "Pokémon " : "") + SIDE_NAME[s.n];
   const parts = [`${side(p.left)} left`, `${side(p.right)} right`];
   if (p.ub) parts.push("Unbalanced");
+  if (p.to) parts.push("TO (two TEs)");
   if (p.backs === 0) parts.push("Empty (no backs)");
   else if (p.backs === 3) parts.push("Full house (3 backs)");
   else if (!p.tag) parts.push(p.backs === 1 ? "Gun (1 back)" : "Gun Split (2 backs)");
@@ -327,6 +346,14 @@ function drawFormation(p, callText) {
   // landing on the line just outside the strength side's last on-line player
   const sides = {"-1": surfaceLayout(p.left.n, p.left.mod),
                  "1":  surfaceLayout(p.right.n, p.right.mod)};
+  if (p.to && p.toSign !== null) {
+    // second TE on the line beside the first; the inside receiver comes off
+    const s = sides[String(p.toSign)];
+    const inner = s.filter(e => e.off).sort((a, b) => a.u - b.u)[0];
+    if (inner) s.splice(s.indexOf(inner), 1);
+    const lastOn = Math.max(2, ...s.filter(e => !e.off).map(e => e.u));
+    s.push({u: lastOn + 1.1, off:false, lab:"Y"});
+  }
   if (p.ub) {
     // the X crosses to the other side (fall back to the weak side's outermost
     // on-line man when no X exists); he covers the TE if one is over there
