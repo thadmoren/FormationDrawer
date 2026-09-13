@@ -66,8 +66,8 @@ Doubles (11, 22, …), 46, and the empty combos default strength to the right.
   6 eligibles → **ILLEGAL**.
 - **TO** (own word, last, like UB): the backside **TE** crosses over and stacks on
   the line beside the strength side's last lineman, so that line reads `G T Y Y`.
-  The side he leaves is bare (just T G). TO needs a tight end on the strength
-  side to double; whoever crosses arrives as a Y. e.g. `17W L TO`, `4W1 K TO`.
+  The side he leaves is bare (just T G). TO is only used when **both** surfaces are
+  odd, so the man crossing is always a tight end. e.g. `17W L TO`, `31 K TO`.
 - **UB** (own word, last, space before): unbalanced — calls the opposite X over;
   he stays on the line and splits out far, covering the TE on a 1/3/5 side.
 

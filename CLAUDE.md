@@ -69,10 +69,9 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   and the empty 5-eligible combos) default strength to the right side; the owner
   called those "difficult to determine". Table lives in `STR_WINNER`.
 - **TO**: its own word, last, like UB (`17W L TO`). It is UB's twin — UB crosses the
-  backside **X**, TO crosses the backside **Y** — so **TO needs the odd (TE-bearing)
-  surface on the STRENGTH side** — that is the Y being doubled. The backside just
-  supplies the body, whatever he is: in `17W L TO` it is the 1's Y, in `4W1 K TO`
-  it is the twins' X, and either way he arrives labeled Y. The TE crosses to the strength side and
+  backside **X**, TO crosses the backside **Y** — but **TO is only used when BOTH
+  surfaces are odd** (1/3/5/7) — the owner's rule, so the man who crosses is always a
+  real tight end. Anything with an even side warns and is ignored. The TE crosses to the strength side and
   stacks on the line just outside its last lineman, giving a 4-man surface that reads
   **G T Y Y**. The receiving side keeps everyone it already had (in `17W L TO` the
   7 keeps its Y/H/Z and the extra Y stacks on); **the donor side is left bare — just
