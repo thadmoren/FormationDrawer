@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13e</span></div>
+    <span class="ver">v2026.09.13f</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -92,7 +92,7 @@
     <summary>Cheat sheet</summary>
     <table>
       <tr><td><b>Surfaces</b></td><td>1 TE · 2 WR · 3 TE/Wing · 4 Twins · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips · Q Quad (4 eligibles, always empty backfield)</td></tr>
-      <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8), P = Pokémon (4, 8 — the bunch set out wide) — put it right after the number: 24B, 8W3, 18P</td></tr>
+      <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8), P = Pokémon (4, 8, Q — the bunch set out wide; QP is a diamond) — put it right after the number: 24B, 8W3, 18P</td></tr>
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
       <tr><td><b>TO</b></td><td>Even side's WR crosses over as a 2nd tight end (27W L TO) — that side reads G T Y Y, the side he left is bare. Needs one odd surface and one even</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
@@ -162,6 +162,10 @@ function surfaceLayout(n, mod) {
   if (mod === "P") {           // Pokemon: the bunch picked up and set out wide
     if (n === 8) return [{u:7.2, off:false, lab:"X"}, {u:6.4, off:true, lab:"W"}, {u:8.0, off:true, lab:"Z"}];
     if (n === 4) return [{u:7.2, off:false, lab:"X"}, {u:6.1, off:true, lab:"Z"}];
+    if (n === "Q") return [{u:7.2, off:false, lab:"X"},                    // point, on the line
+                           {u:6.1, off:true, d:1.1, lab:"W"},              // inside flank
+                           {u:8.3, off:true, d:1.1, lab:"Z"},              // outside flank
+                           {u:7.2, off:true, d:2.4, lab:"H"}];             // back point
   }
   if (mod === "W") {           // wing: innermost becomes a detached wing (H)
     if (n === 4) return [{u:7.2, off:false, lab:"X"}, {u:2.9, off:true, lab:"H"}];
@@ -234,7 +238,7 @@ function parseCall(raw) {
   let tag = m[5] || null;
   const warns = [];
 
-  const MOD_OK = {B:[2,4,5,7,8], W:[4,7,8], P:[4,8]};
+  const MOD_OK = {B:[2,4,5,7,8], W:[4,7,8], P:[4,8,"Q"]};
   for (const side of [left, right]) {
     const ok = MOD_OK[side.mod] || [];
     if (side.mod && !ok.includes(side.n)) {
@@ -400,7 +404,8 @@ function drawFormation(p, callText) {
   const skill = [];
   for (const sign of [-1, 1])
     for (const e of sides[String(sign)])
-      skill.push({x: CX + sign * e.u * U, d: e.off ? 1.1 : 0, lab: e.lab});
+      skill.push({x: CX + sign * e.u * U,
+                  d: e.d != null ? e.d : (e.off ? 1.1 : 0), lab: e.lab});
 
   const bf = backfieldLayout(p.tag, p.backs, str);
 

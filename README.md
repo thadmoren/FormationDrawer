@@ -36,7 +36,8 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
   receiver splits halfway in.
 - **W** = Wing (4, 7, 8) — innermost eligible becomes a detached wing (H) just off
   the last man on the line. 4W is X wide + H wing.
-- **P** = Pokémon (4, 8) — the bunch picked up and set out wide. 8P is a triangle
+- **P** = Pokémon (4, 8, Q) — the bunch picked up and set out wide. `QP` is the quad
+  out wide as a diamond: X the point on the line, W and Z flanking, H behind them. 8P is a triangle
   out at the X's normal split: X the point on the line, W and Z winging off him on
   both sides. 4P is the X at normal width with the Z as an inside wing. Write it
   attached to the number (`18P`); `18 P` with a space is Pistol.

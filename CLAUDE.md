@@ -54,7 +54,10 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   bunch out where the X normally splits, formed as a **triangle**: X is the point on
   the line at 7.2 with W (6.4) and Z (8.0) winging off him on *both* sides, one
   inside and one outside. 4P is X at a normal 7.2 split with Z at 6.1 as an inside
-  wing.
+  wing. **QP is the quad out wide as a DIAMOND**: X the point on the line at 7.2,
+  W (6.1) and Z (8.3) flanking off the ball, H behind at 7.2 and 2.4 yards deep.
+  That back man is the only player who uses an explicit `d` in `surfaceLayout` —
+  every other entry gets its depth from the `off` flag (0 or 1.1).
   **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
   for a trailing `" P"` *before* stripping: spaced (`18 P`) = Pistol, attached
   (`18P`) = Pokémon. Don't "simplify" that check away — it silently breaks Pistol.
