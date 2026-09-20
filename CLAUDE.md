@@ -37,6 +37,12 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - Surfaces 1–8 (eligibles per side): 1 TE · 2 WR · 3 TE/Wing · 4 Twins (X on line,
   Z slot) · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips. Backs = 5 − total
   eligibles; 2 elig = full house, 5 = empty, 6 = ILLEGAL.
+- **Q (Quad)** is a ninth surface written as a letter, not a digit: 4 eligibles —
+  X on the line at 7.2 with Z (5.8), W (4.3) and H (2.9) off it inside him. Four
+  eligibles means the only legal partners are 1 and 2, so **Q is always an empty
+  backfield**. `surf()` in `parseCall` keeps "Q" a string while digits become
+  numbers, so anything doing arithmetic on `side.n` (the TO odd/even test) must
+  special-case it.
 - **B** (bunch): tight to the tackle — 4B is X on the line just outside the tackle
   with Z tucked inside off the line. 8B is the same **triangle** as 8P but tight:
   X the point on the line at 4.0, W (3.2) and Z (4.8) winging off him on both sides.

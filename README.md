@@ -27,6 +27,7 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
 | 6 | Inverted Twins | 2 |
 | 7 | Trey | 3 |
 | 8 | Trips (W–Z–X going out from the middle, X on line) | 3 |
+| Q | Quad — four receivers, X on the line (always empty backfield) | 4 |
 
 ### Modifiers (right after the number)
 
