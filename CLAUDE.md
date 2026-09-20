@@ -122,5 +122,9 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - Positions live in `surfaceLayout()` (per-side eligibles; `u` = units from center,
   positive, mirrored per side; `off` = off the LOS) and `backfieldLayout()` (`d` =
   depth in yards; `str` = ±1 strength side, right on ties).
-- To swap the embedded reference chart: compress to JPEG (~300 KB), base64 into the
-  `refchart` img, and update `reference/formation-system.png`.
+- The reference chart is **generated**, not hand-drawn: `reference/chart-source.html`
+  is the source. Edit it, render at 1700px wide with headless Chrome (measure
+  `document.body.scrollHeight` first so nothing clips), `sips` it to JPEG ~q52
+  (~330 KB), base64 it into the `refchart` img, and refresh
+  `reference/formation-system.png` with the full-res PNG. Keep the chart in step
+  with any rule change — it is the thing the owner reads.
