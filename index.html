@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13j</span></div>
+    <span class="ver">v2026.09.13k</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -97,7 +97,7 @@
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
       <tr><td><b>TO</b></td><td>Even side's WR crosses over as a 2nd tight end (27W L TO) — that side reads G T Y Y, the side he left is bare. Needs one odd surface and one even</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
-      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak · S2G/W2G/K2G/Q2G two-up gun · KI King I (3 backs)</td></tr>
+      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak · S2G/W2G/K2G/Q2G two-up gun · KI/QI King/Queen I (3 backs)</td></tr>
       <tr><td><b>Rules</b></td><td>Backs = 5 − total surface eligibles. 2 elig = 3 backs (no tag) · 5 elig = empty (no tag) · 6 elig = ILLEGAL</td></tr>
     </table>
   </details>
@@ -137,6 +137,7 @@ const TAGS = {
   WG:{backs:2, qb:"gun",   name:"Stack Gun weak"},
   FG:{backs:2, qb:"gun",   name:"Stack Gun weak"},   // legacy alias for WG
   KI:{backs:3, qb:"uc",    name:"King I"},
+  QI:{backs:3, qb:"uc",    name:"Queen I"},
   S2G:{backs:3, qb:"gun",  name:"Two-Up Gun strong"},
   W2G:{backs:3, qb:"gun",  name:"Two-Up Gun weak"},
   K2G:{backs:3, qb:"gun",  name:"Two-Up King Gun"},
@@ -213,8 +214,10 @@ function backfieldLayout(tag, nBacks, str) {
     case "T": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.3, lab:"F"}, {u:-str*1.8, d:3.3, lab:"T"}]};
     case "TS": return {qb:{u:0, d:QB.uc},    backs:[{u:0, d:3.3, lab:"F"}, {u:str*1.8, d:3.3, lab:"T"}]};
     case "KG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.5, d:2.8, lab:"F"}, {u:-str*1.5, d:5.8, lab:"T"}]};
-    // King I (3 back): the I stack with a second fullback offset to strength
-    case "KI": return {qb:{u:0, d:QB.uc},   backs:[{u:0, d:3.2, lab:"F"}, {u:str*1.5, d:2.8, lab:"F"}, {u:0, d:5.4, lab:"T"}]};
+    // King/Queen I (3 back): two fullbacks side by side at the same depth with the
+    // tailback behind them in the I — KI sets the second one strong, QI weak.
+    case "KI": return {qb:{u:0, d:QB.uc},   backs:[{u:0, d:3.2, lab:"F"}, {u:str*1.5, d:3.2, lab:"F"}, {u:0, d:5.4, lab:"T"}]};
+    case "QI": return {qb:{u:0, d:QB.uc},   backs:[{u:0, d:3.2, lab:"F"}, {u:-str*1.5, d:3.2, lab:"F"}, {u:0, d:5.4, lab:"T"}]};
     // Two-Up (3 back): a back in the B gap and one in the C gap a yard off the
     // ball on the named side; the third takes the matching 2-back tag's spot.
     case "S2G": return {qb:{u:0, d:QB.gun},  backs:[{u:str*1.5, d:1.0, lab:"F"}, {u:str*2.5, d:1.0, lab:"R"}, {u:str*1.5, d:5.8, lab:"T"}]};
@@ -245,7 +248,7 @@ function parseCall(raw) {
   // Pokemon modifier. Spaces vanish on the next line, so settle it while they exist.
   const mod2 = /\sP$/.test(s) ? "[BW]" : "[BWP]";
   s = s.replace(/[\s\-\.\/]+/g, "");
-  const m = s.match(new RegExp(`^([1-8Q])([BWP])?([1-8Q])(${mod2})?(S2G|W2G|K2G|Q2G|KI|TS|QG|KG|SG|WG|FG|[DPLRFIKQST])?$`));
+  const m = s.match(new RegExp(`^([1-8Q])([BWP])?([1-8Q])(${mod2})?(S2G|W2G|K2G|Q2G|KI|QI|TS|QG|KG|SG|WG|FG|[DPLRFIKQST])?$`));
   if (!m) return {err:"Can't read that call. Format: <left#><mod?><right#><mod?> <tag?>, UB/TO last with a space — e.g. 24B I, 38W, 48P, 24 K UB, 17W L TO"};
 
   const surf = v => (v === "Q" ? "Q" : +v);            // Quad is a letter, not a digit

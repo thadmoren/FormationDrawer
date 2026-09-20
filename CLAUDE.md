@@ -73,9 +73,10 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   in QG, away from it in KG (opposite the fullback). **King and Queen are mirrors:
   any markup fix to one applies flipped to the other, including the G versions.**
   T = halfback up level with the fullback, weak side; TS = same but strong side.
-- **KI (King I, 3 backs, under center)**: the I stack behind the QB — fullback at
-  3.2, tailback at 5.4 — plus a **second fullback offset to strength** in the King
-  spot (1.5, 2.8). Both offset men are labeled F, which is intended.
+- **KI / QI (King I and Queen I, 3 backs, under center)**: two fullbacks **side by
+  side at the same depth** (3.2) — one behind the QB, one offset 1.5 to strength for
+  KI or away from it for QI — with the tailback behind them at 5.4 in the I. Both
+  are labeled F, which is intended; keeping them level is the owner's rule.
 - **Two-Up tags (3 backs, gun): S2G · W2G · K2G · Q2G.** The first real 3-back tags —
   before these, any tag on a 2-eligible formation was rejected. Two backs sit a yard
   off the ball in the **B gap (1.5) and C gap (2.5)** on the named side; the third
