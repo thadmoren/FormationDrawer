@@ -52,7 +52,8 @@ requirement, and no dependencies. Double-click it, or serve it for phone access.
   works as an old alias) ·
   **T** T-form (HB up, weak side) ·
   **TS** T-form strong side
-- 3 backs: **S2G** / **W2G** two-up gun strong/weak · **K2G** / **Q2G** the King and
+- 3 backs: **KI** King I (I stack behind the QB plus a second fullback offset to
+  strength) · **S2G** / **W2G** two-up gun strong/weak · **K2G** / **Q2G** the King and
   Queen versions — two backs a yard off the ball in the B and C gaps on that side,
   third back in the matching 2-back tag's spot.
 - No tag → shotgun assumed. Under center only when I, K, Q, F, or D is called.
