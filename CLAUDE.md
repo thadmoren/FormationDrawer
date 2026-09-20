@@ -124,9 +124,11 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   depth in yards; `str` = ±1 strength side, right on ties).
 - The reference chart is **generated**, not hand-drawn: `reference/chart-source.html`
   is the source. Edit it, render at 1700px wide with headless Chrome (measure
-  `document.body.scrollHeight` first so nothing clips), then **downscale to 1400px**
-  and `sips` to JPEG ~q60 (~300 KB) before base64-ing it into the `refchart` img.
-  Downscaling costs nothing readability-wise — text size *relative to the chart* is
-  what matters, and it keeps the page near 500 KB. Save the full-res PNG to
-  `reference/formation-system.png`. Keep the chart in step
+  `document.body.scrollHeight` first so nothing clips), then encode with
+  **`cwebp -lossless`** and base64 that into the `refchart` img as
+  `data:image/webp;base64,…`. The chart is flat-colour line art, so lossless WebP
+  beats every lossy option on both counts — ~250 KB and pixel-sharp when zoomed,
+  against ~300 KB for a *blurry* downscaled JPEG and 1.2 MB for a sharp one.
+  **Never downscale or use JPEG here** — the owner zooms in on a phone and sees it
+  immediately. Save the full-res PNG to `reference/formation-system.png`. Keep the chart in step
   with any rule change — it is the thing the owner reads.
