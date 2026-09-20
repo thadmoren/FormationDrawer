@@ -102,9 +102,9 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - **Thor / Loki**: trailing words like UB/TO. Both tackles go to one side — **Thor
   right, Loki left** (absolute, not strength-relative). The line becomes G C G T T
   with the second tackle at ±3.0; eligibles on that side slide out so the innermost
-  clears him (capped at 8.6). The donor side is left with just a guard outside the
-  center, so its on-line eligible currently keeps its normal split and a gap sits
-  where the tackle was — open question whether he should close down to the guard.
+  clears him (capped at 8.6). On the backside a **tight end closes down into
+  the vacated tackle spot (2.0) next to the guard**, and a wing within 2.0 units of
+  him follows; a split receiver (7.2 out) stays split.
 - **UB**: its own word, last, space before (`24 K UB`). Calls the opposite X over;
   he stays on the line and lands FAR — a wide split (7.2u), or one unit outside
   the widest on-line man if that's wider. Covers the TE on a 1/3/5 side.

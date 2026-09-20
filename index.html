@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13i</span></div>
+    <span class="ver">v2026.09.13j</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -431,6 +431,16 @@ function drawFormation(p, callText) {
     if (inner <= 3.9) {
       const delta = 4.0 - inner;
       s.forEach(e => { e.u = Math.min(e.u + delta, 8.6); });
+    }
+    // backside: a tight end closes down into the vacated tackle spot next to the
+    // guard, and anyone winging off him follows. A split receiver stays split.
+    const back = sides[String(-p.tackles)];
+    const onLine = back.filter(e => !e.off);
+    const tight = onLine.length ? onLine.reduce((a, b) => (a.u <= b.u ? a : b)) : null;
+    if (tight && tight.u <= 4.5) {
+      const was = tight.u, shift = 2.0 - was;
+      tight.u = 2.0;
+      back.filter(e => e.off && e.u - was <= 2.0).forEach(e => { e.u += shift; });
     }
   }
 
