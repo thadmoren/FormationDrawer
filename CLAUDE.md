@@ -38,7 +38,8 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   Z slot) · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips. Backs = 5 − total
   eligibles; 2 elig = full house, 5 = empty, 6 = ILLEGAL.
 - **Q (Quad)** is a ninth surface written as a letter, not a digit: 4 eligibles —
-  X on the line at 7.2 with Z (5.8), W (4.3) and H (2.9) off it inside him. Four
+  X on the line at 7.2 with Z (5.8), H (4.3) and W (2.9) off it inside him
+  (W innermost, matching Trips). Four
   eligibles means the only legal partners are 1 and 2, so **Q is always an empty
   backfield**. `surf()` in `parseCall` keeps "Q" a string while digits become
   numbers, so anything doing arithmetic on `side.n` (the TO odd/even test) must
