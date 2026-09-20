@@ -1,59 +1,67 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { width: 1700px; background: #000; padding: 14px 16px 12px;
+  body { width: 1700px; background: #000; padding: 28px 32px 24px;
          font-family: "Arial Narrow", Arial, Helvetica, sans-serif; color: #14203c; }
-  h1 { color: #fff; font-size: 40px; font-weight: 700; text-align: center;
-       letter-spacing: .5px; line-height: 1; }
-  h1 + p { color: #f2b705; font-size: 17px; font-weight: 700; text-align: center;
-           letter-spacing: .4px; margin: 3px 0 10px; text-transform: uppercase; }
-  .row { display: flex; gap: 9px; align-items: stretch; margin-bottom: 9px; }
-  .card { background: #f0f0f0; border-radius: 4px; overflow: hidden;
+  h1 { color: #fff; font-size: 80px; font-weight: 700; text-align: center;
+       letter-spacing: 1px; line-height: 1; }
+  h1 + p { color: #f2b705; font-size: 34px; font-weight: 700; text-align: center;
+           letter-spacing: .8px; margin: 8px 0 20px; text-transform: uppercase; }
+  .row { display: flex; gap: 18px; align-items: stretch; margin-bottom: 18px; }
+  .card { background: #f0f0f0; border-radius: 8px; overflow: hidden;
           display: flex; flex-direction: column; }
-  .card > h2 { color: #fff; text-align: center; font-size: 15px; font-weight: 700;
-               letter-spacing: .5px; text-transform: uppercase; padding: 4px 8px; }
-  .card > h2 span { font-size: 11px; opacity: .85; }
+  .card > h2 { color: #fff; text-align: center; font-size: 30px; font-weight: 700;
+               letter-spacing: 1px; text-transform: uppercase; padding: 8px 16px; }
+  .card > h2 span { font-size: 22px; opacity: .85; }
   .navy  > h2 { background: #131d42; }
   .green > h2 { background: #14432a; }
   .plum  > h2 { background: #3b1d4a; }
   .rust  > h2 { background: #7a2410; }
   .maroon> h2 { background: #4a0d12; }
-  .body { padding: 5px 7px 6px; flex: 1; }
+  .teal  > h2 { background: #0d3b43; }
+  .body { padding: 10px 14px 12px; flex: 1; }
   table { width: 100%; border-collapse: collapse; }
-  td, th { border: 1px solid #b9bdc7; padding: 2px 5px; vertical-align: middle;
-           font-size: 11.5px; line-height: 1.22; }
-  th { background: #dfe2e8; font-size: 10px; text-transform: uppercase;
-       letter-spacing: .3px; font-weight: 700; }
-  td.k { text-align: center; font-weight: 700; font-size: 15px; width: 40px;
+  td, th { border: 2px solid #b9bdc7; padding: 4px 10px; vertical-align: middle;
+           font-size: 23px; line-height: 1.22; }
+  th { background: #dfe2e8; font-size: 20px; text-transform: uppercase;
+       letter-spacing: .6px; font-weight: 700; }
+  td.k { text-align: center; font-weight: 700; font-size: 30px; width: 84px;
          font-family: Arial, Helvetica, sans-serif; }
-  td.n { font-weight: 700; text-transform: uppercase; font-size: 11px;
-         letter-spacing: .2px; white-space: nowrap; }
-  td.d { font-family: Arial, Helvetica, sans-serif; font-size: 10.8px; }
-  .sub { background: #cfd4de; font-weight: 700; font-size: 10.5px;
-         text-transform: uppercase; letter-spacing: .4px; text-align: center; }
-  .note { font-family: Arial, Helvetica, sans-serif; font-size: 10.5px;
-          line-height: 1.3; margin-top: 4px; }
-  .chip { display: inline-block; background: #fff; border: 1px solid #b9bdc7;
-          border-radius: 3px; padding: 1px 5px; margin: 1px; font-weight: 700;
-          font-size: 12px; font-family: Arial, Helvetica, sans-serif; }
+  td.n { font-weight: 700; text-transform: uppercase; font-size: 22px;
+         letter-spacing: .4px; white-space: nowrap; }
+  td.d { font-family: Arial, Helvetica, sans-serif; font-size: 21.6px; }
+  .sub { background: #cfd4de; font-weight: 700; font-size: 21px;
+         text-transform: uppercase; letter-spacing: .8px; text-align: center; }
+  .note { font-family: Arial, Helvetica, sans-serif; font-size: 21px;
+          line-height: 1.3; margin-top: 8px; }
+  .chip { display: inline-block; background: #fff; border: 2px solid #b9bdc7;
+          border-radius: 6px; padding: 3px 12px; margin: 3px; font-weight: 700;
+          font-size: 26px; font-family: Arial, Helvetica, sans-serif; }
   .chip.bad { background: #f6dede; border-color: #b46; color: #7a1020; }
-  .grp { font-family: Arial, Helvetica, sans-serif; font-size: 10.5px;
-         margin: 3px 0 1px; font-weight: 700; color: #45506b;
-         text-transform: uppercase; letter-spacing: .3px; }
-  .warn { background: #fff4d6; border-left: 4px solid #e0a500; padding: 3px 6px;
-          font-size: 10.5px; line-height: 1.3; margin-top: 4px;
+  .grp { font-family: Arial, Helvetica, sans-serif; font-size: 21px;
+         margin: 8px 0 3px; font-weight: 700; color: #45506b;
+         text-transform: uppercase; letter-spacing: .6px; }
+  .warn { background: #fff4d6; border-left: 8px solid #e0a500; padding: 7px 12px;
+          font-size: 21px; line-height: 1.3; margin-top: 10px;
           font-family: Arial, Helvetica, sans-serif; }
-  .foot { background: #000; color: #fff; text-align: center; font-size: 15px;
-          font-weight: 700; letter-spacing: .6px; padding: 5px 0 1px; }
+  .foot { background: #000; color: #fff; text-align: center; font-size: 30px;
+          font-weight: 700; letter-spacing: 1.2px; padding: 12px 0 2px; }
   .foot b { color: #f2b705; }
+  .cols { display: flex; gap: 14px; }
+  .cols > div { flex: 1; }
+  .colhd { background: #3b1d4a; color: #fff; text-align: center; font-weight: 700;
+           font-size: 24px; text-transform: uppercase; letter-spacing: .6px;
+           padding: 6px 4px; border-radius: 5px 5px 0 0; }
+  .colhd em { display: block; font-style: normal; font-size: 19px; opacity: .85; }
+  .colbox { border: 2px solid #b9bdc7; border-top: none; border-radius: 0 0 5px 5px;
+            padding: 8px 6px; text-align: center; min-height: 260px; }
 </style>
 
 <h1>COMPLETE FORMATION &amp; BACKFIELD SYSTEM</h1>
 <p>Surfaces · Modifiers · Backfield Tags · End Words</p>
 
+<!-- ================= ROW 1 : TAGS + SURFACES ================= -->
 <div class="row">
-
-  <!-- ============ BACKFIELD TAGS ============ -->
-  <div class="card navy" style="width:33%">
+  <div class="card navy" style="width:50%">
     <h2>1. Backfield Tags <span>(QB &amp; back alignment)</span></h2>
     <div class="body">
       <table>
@@ -79,18 +87,17 @@
         <tr><td class="sub" colspan="3">Three backs — 2 surface eligibles</td></tr>
         <tr><td class="k">KI</td><td class="n">King I</td><td class="d">Two FBs <b>level, side by side</b> — second offset to strength; TB behind them in the I.</td></tr>
         <tr><td class="k">QI</td><td class="n">Queen I</td><td class="d">Mirror — second FB offset <b>away from</b> strength.</td></tr>
-        <tr><td class="k">S2G</td><td class="n">Two-Up Gun Strong</td><td class="d">Two backs a yard off the ball in the <b>B and C gaps</b>, strength side; third in the SG spot.</td></tr>
-        <tr><td class="k">W2G</td><td class="n">Two-Up Gun Weak</td><td class="d">Same two up backs on the <b>weak</b> side; third in the WG spot.</td></tr>
-        <tr><td class="k">K2G</td><td class="n">Two-Up King Gun</td><td class="d">Two up <b>strong</b>; third back takes the King Gun tailback spot (weak).</td></tr>
-        <tr><td class="k">Q2G</td><td class="n">Two-Up Queen Gun</td><td class="d">Two up <b>weak</b>; third back takes the Queen Gun tailback spot (strong).</td></tr>
+        <tr><td class="k">S2G</td><td class="n">Two-Up Strong</td><td class="d">Two backs a yard off the ball in the <b>B and C gaps</b>, strength side; third in the SG spot.</td></tr>
+        <tr><td class="k">W2G</td><td class="n">Two-Up Weak</td><td class="d">Same two up backs on the <b>weak</b> side; third in the WG spot.</td></tr>
+        <tr><td class="k">K2G</td><td class="n">Two-Up King</td><td class="d">Two up <b>strong</b>; third back takes the King Gun tailback spot (weak).</td></tr>
+        <tr><td class="k">Q2G</td><td class="n">Two-Up Queen</td><td class="d">Two up <b>weak</b>; third back takes the Queen Gun tailback spot (strong).</td></tr>
       </table>
       <div class="warn"><b>Gun is assumed</b> unless I, K, Q, F or D is called. The single back
         in gun is labeled <b>T</b>; D and P keep <b>R</b>.</div>
     </div>
   </div>
 
-  <!-- ============ SURFACES + MODIFIERS ============ -->
-  <div class="card green" style="width:34%">
+  <div class="card green" style="width:50%">
     <h2>2. Surface Numbers <span>(eligibles on that side)</span></h2>
     <div class="body">
       <table>
@@ -110,7 +117,7 @@
       <table>
         <tr><td class="k">B</td><td class="n">Bunch</td><td class="d">Condensed tight to the tackle. <b>8B is a triangle</b> — X the point on the line, W and Z winging off him on both sides. On 2 and 5 the receiver splits halfway in.</td></tr>
         <tr><td class="k">W</td><td class="n">Wing</td><td class="d">Innermost eligible detaches as a wing (H) just off the last man on the line — the tackle's hip when there's no TE.</td></tr>
-        <tr><td class="k">P</td><td class="n">Pokémon</td><td class="d">The bunch picked up and set out wide. <b>8P</b> = the same triangle at the X's normal split. <b>4P</b> = X at a normal split, Z as an inside wing. <b>QP</b> = a <b>diamond</b> — X the point, W and Z flanking, H behind.</td></tr>
+        <tr><td class="k">P</td><td class="n">Pokémon</td><td class="d">The bunch picked up and set out wide. <b>8P</b> = the same triangle at the X's normal split. <b>4P</b> = X at a normal split, Z as an inside wing. <b>QP</b> = a <b>diamond</b>.</td></tr>
       </table>
       <div class="warn"><b>Write modifiers attached:</b> 24B, 8W3, 18P, QP2.
         <b>18P</b> is Pokémon — <b>18 P</b> with a space is the Pistol tag.</div>
@@ -119,56 +126,78 @@
       <table>
         <tr><td class="k">Y</td><td class="d">Tight end, on the line</td>
             <td class="k">X</td><td class="d">Wide receiver, on the line</td></tr>
-        <tr><td class="k">Z</td><td class="d">Receiver off the line (flanker)</td>
+        <tr><td class="k">Z</td><td class="d">Receiver off the line</td>
             <td class="k">H</td><td class="d">Wing / slot, off the line</td></tr>
-        <tr><td class="k">W</td><td class="d">Innermost receiver of a 3+ surface</td>
+        <tr><td class="k">W</td><td class="d">Innermost of a 3+ surface</td>
             <td class="k">Q</td><td class="d">Quarterback</td></tr>
         <tr><td class="k">F</td><td class="d">Fullback</td>
-            <td class="k">T</td><td class="d">Tailback (single gun back)</td></tr>
+            <td class="k">T</td><td class="d">Tailback (gun back)</td></tr>
         <tr><td class="k">R</td><td class="d">Back under center / pistol</td>
             <td class="k">C G T</td><td class="d">Center, guards, tackles</td></tr>
       </table>
 
       <div class="grp">Reading a call</div>
       <table>
-        <tr><td class="d" style="font-size:12px"><b>2 4B</b> &nbsp;·&nbsp; <b>I</b> &nbsp;·&nbsp; <b>UB</b><br>
-          <span style="color:#45506b">left surface · right surface + modifier &nbsp;|&nbsp;
-          backfield tag &nbsp;|&nbsp; end word</span></td></tr>
+        <tr><td class="d" style="font-size:30px; text-align:center; padding:10px">
+          <b>2</b> &nbsp; <b>4B</b> &nbsp;·&nbsp; <b>I</b> &nbsp;·&nbsp; <b>UB</b></td></tr>
+        <tr><td class="d" style="text-align:center; color:#45506b">
+          left surface &nbsp;|&nbsp; right surface + modifier &nbsp;|&nbsp;
+          backfield tag &nbsp;|&nbsp; end word</td></tr>
+        <tr><td class="d" style="text-align:center">
+          Single WR left · Bunch Twins right · I formation · Unbalanced</td></tr>
       </table>
-    </div>
-  </div>
-
-  <!-- ============ COMBOS + STRENGTH ============ -->
-  <div class="card plum" style="width:33%">
-    <h2>3. All Formation Combinations <span>(by number of backs)</span></h2>
-    <div class="body">
-      <div class="grp">Three backs — 2 eligibles</div>
-      <div><span class="chip">11</span><span class="chip">12 / 21</span><span class="chip">22</span></div>
-      <div class="grp">Two backs — 3 eligibles</div>
-      <div><span class="chip">13 / 31</span><span class="chip">14 / 41</span><span class="chip">15 / 51</span><span class="chip">16 / 61</span><span class="chip">23 / 32</span><span class="chip">24 / 42</span><span class="chip">25 / 52</span><span class="chip">26 / 62</span></div>
-      <div class="grp">One back — 4 eligibles</div>
-      <div><span class="chip">17 / 71</span><span class="chip">18 / 81</span><span class="chip">27 / 72</span><span class="chip">28 / 82</span><span class="chip">33</span><span class="chip">34 / 43</span><span class="chip">35 / 53</span><span class="chip">36 / 63</span><span class="chip">44</span><span class="chip">45 / 54</span><span class="chip">46 / 64</span><span class="chip">55</span><span class="chip">56 / 65</span><span class="chip">66</span></div>
-      <div class="grp">Empty — 5 eligibles</div>
-      <div><span class="chip">1Q / Q1</span><span class="chip">2Q / Q2</span><span class="chip">37 / 73</span><span class="chip">38 / 83</span><span class="chip">47 / 74</span><span class="chip">48 / 84</span><span class="chip">57 / 75</span><span class="chip">58 / 85</span><span class="chip">67 / 76</span><span class="chip">68 / 86</span></div>
-      <div class="grp">Illegal — 6 or more eligibles</div>
-      <div><span class="chip bad">77</span><span class="chip bad">78 / 87</span><span class="chip bad">88</span><span class="chip bad">Q with 3–8</span></div>
-
-      <div class="grp" style="margin-top:6px">Strength — locked per pair (winner shown; mirrors flip)</div>
-      <table>
-        <tr><td class="d">12→<b>1</b></td><td class="d">13→<b>3</b></td><td class="d">14→<b>1</b></td><td class="d">15→<b>5</b></td><td class="d">16→<b>1</b></td><td class="d">17→<b>7</b></td></tr>
-        <tr><td class="d">18→<b>1</b></td><td class="d">23→<b>3</b></td><td class="d">24→<b>4</b></td><td class="d">25→<b>5</b></td><td class="d">26→<b>6</b></td><td class="d">27→<b>7</b></td></tr>
-        <tr><td class="d">28→<b>8</b></td><td class="d">34→<b>3</b></td><td class="d">35→<b>3</b></td><td class="d">36→<b>3</b></td><td class="d">45→<b>5</b></td><td class="d">56→<b>5</b></td></tr>
-      </table>
-      <div class="note">Everything unlisted — doubles, 46, the empty combos, anything with Q —
-        defaults to <b>strength right</b>.</div>
     </div>
   </div>
 </div>
 
-<!-- ============ END WORDS + RULES ============ -->
+<!-- ================= ROW 2 : COMBINATIONS ================= -->
+<div class="card plum" style="width:100%; margin-bottom:18px">
+  <h2>3. All Formation Combinations <span>(mirrors shown together)</span></h2>
+  <div class="body">
+    <div class="cols">
+      <div>
+        <div class="colhd">Three Backs<em>2 eligibles</em></div>
+        <div class="colbox">
+          <span class="chip">11</span><span class="chip">12 / 21</span><span class="chip">22</span>
+        </div>
+      </div>
+      <div>
+        <div class="colhd">Two Backs<em>3 eligibles</em></div>
+        <div class="colbox">
+          <span class="chip">13 / 31</span><span class="chip">14 / 41</span><span class="chip">15 / 51</span>
+          <span class="chip">16 / 61</span><span class="chip">23 / 32</span><span class="chip">24 / 42</span>
+          <span class="chip">25 / 52</span><span class="chip">26 / 62</span>
+        </div>
+      </div>
+      <div>
+        <div class="colhd">One Back<em>4 eligibles</em></div>
+        <div class="colbox">
+          <span class="chip">17 / 71</span><span class="chip">18 / 81</span><span class="chip">27 / 72</span>
+          <span class="chip">28 / 82</span><span class="chip">33</span><span class="chip">34 / 43</span>
+          <span class="chip">35 / 53</span><span class="chip">36 / 63</span><span class="chip">44</span>
+          <span class="chip">45 / 54</span><span class="chip">46 / 64</span><span class="chip">55</span>
+          <span class="chip">56 / 65</span><span class="chip">66</span>
+        </div>
+      </div>
+      <div>
+        <div class="colhd">Empty<em>5 eligibles</em></div>
+        <div class="colbox">
+          <span class="chip">1Q / Q1</span><span class="chip">2Q / Q2</span><span class="chip">37 / 73</span>
+          <span class="chip">38 / 83</span><span class="chip">47 / 74</span><span class="chip">48 / 84</span>
+          <span class="chip">57 / 75</span><span class="chip">58 / 85</span><span class="chip">67 / 76</span>
+          <span class="chip">68 / 86</span>
+        </div>
+      </div>
+    </div>
+    <div class="grp">Illegal — 6 or more eligibles</div>
+    <div><span class="chip bad">77</span><span class="chip bad">78 / 87</span><span class="chip bad">88</span><span class="chip bad">Q with 3–8</span></div>
+  </div>
+</div>
+
+<!-- ================= ROW 3 : END WORDS + KEY POINTS ================= -->
 <div class="row">
-  <div class="card rust" style="width:67%">
-    <h2>4. End Words <span>(own word, last, with a space — 24 K UB · 27W L TO · 12 KI THOR)</span></h2>
+  <div class="card rust" style="width:62%">
+    <h2>4. End Words <span>(own word, last, with a space)</span></h2>
     <div class="body">
       <table>
         <tr><td class="k">UB</td><td class="n">Unbalanced</td><td class="d">Calls the opposite <b>X</b> over. He stays on the line and lands <b>far</b> — a wide split, or a unit outside the widest man already there. Needs an <b>even</b> surface to take the receiver from.</td></tr>
@@ -176,24 +205,48 @@
         <tr><td class="k">THOR</td><td class="n">Tackles Right</td><td class="d">Both tackles to the <b>right</b> — the line becomes <b>G C G T T</b>. Eligibles on that side slide out past the new end man; the backside tight end <b>closes down to the guard</b>. A split receiver stays split.</td></tr>
         <tr><td class="k">LOKI</td><td class="n">Tackles Left</td><td class="d">The same, both tackles to the <b>left</b>. Thor and Loki are absolute — they do not follow strength.</td></tr>
       </table>
+      <div class="note"><b>Examples:</b> 24 K UB · 27W L TO · 12 KI THOR · 12 QI LOKI</div>
     </div>
   </div>
 
-  <div class="card maroon" style="width:33%">
+  <div class="card maroon" style="width:38%">
     <h2>5. Key Points</h2>
     <div class="body">
       <table>
         <tr><td class="d">✓ &nbsp;<b>Backs = 5 − total eligibles.</b> 2 elig = full house, 5 = empty, 6 = illegal.</td></tr>
         <tr><td class="d">✓ &nbsp;Surface numbers say how many eligibles are on that side — nothing else.</td></tr>
         <tr><td class="d">✓ &nbsp;Modifiers change alignment only. They never change the count.</td></tr>
-        <tr><td class="d">✓ &nbsp;Read the call left side, right side, then backfield tag, then any end words.</td></tr>
+        <tr><td class="d">✓ &nbsp;Read the call left side, right side, backfield tag, then end words.</td></tr>
         <tr><td class="d">✓ &nbsp;Modifiers ride the number (<b>24B</b>). End words stand alone (<b>24 K UB</b>).</td></tr>
-        <tr><td class="d">✓ &nbsp;A tag whose back count doesn't match the formation is ignored with a warning.</td></tr>
-        <tr><td class="d">✓ &nbsp;King and Queen are mirrors of each other — so are SG/WG, KI/QI, K2G/Q2G.</td></tr>
+        <tr><td class="d">✓ &nbsp;A tag whose back count doesn't match is ignored with a warning.</td></tr>
+        <tr><td class="d">✓ &nbsp;King and Queen are mirrors — so are SG/WG, KI/QI, K2G/Q2G.</td></tr>
       </table>
-      <div class="note"><b>Examples:</b> 24B I · 44W L · 18P D · QP2 · 21 K2G ·
-        24 K UB · 27W L TO · 12 QI THOR</div>
     </div>
+  </div>
+</div>
+
+<!-- ================= ROW 4 : STRENGTH ================= -->
+<div class="card teal" style="width:100%; margin-bottom:18px">
+  <h2>6. Strength <span>(locked per pair — winning surface shown, mirrors flip)</span></h2>
+  <div class="body">
+    <table>
+      <tr>
+        <td class="d" style="text-align:center">12→<b>1</b></td><td class="d" style="text-align:center">13→<b>3</b></td>
+        <td class="d" style="text-align:center">14→<b>1</b></td><td class="d" style="text-align:center">15→<b>5</b></td>
+        <td class="d" style="text-align:center">16→<b>1</b></td><td class="d" style="text-align:center">17→<b>7</b></td>
+        <td class="d" style="text-align:center">18→<b>1</b></td><td class="d" style="text-align:center">23→<b>3</b></td>
+        <td class="d" style="text-align:center">24→<b>4</b></td>
+      </tr>
+      <tr>
+        <td class="d" style="text-align:center">25→<b>5</b></td><td class="d" style="text-align:center">26→<b>6</b></td>
+        <td class="d" style="text-align:center">27→<b>7</b></td><td class="d" style="text-align:center">28→<b>8</b></td>
+        <td class="d" style="text-align:center">34→<b>3</b></td><td class="d" style="text-align:center">35→<b>3</b></td>
+        <td class="d" style="text-align:center">36→<b>3</b></td><td class="d" style="text-align:center">45→<b>5</b></td>
+        <td class="d" style="text-align:center">56→<b>5</b></td>
+      </tr>
+    </table>
+    <div class="note">Everything unlisted — doubles, 46, the empty combos, anything with Q —
+      defaults to <b>strength right</b>.</div>
   </div>
 </div>
 
