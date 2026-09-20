@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13f</span></div>
+    <span class="ver">v2026.09.13g</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -96,7 +96,7 @@
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
       <tr><td><b>TO</b></td><td>Even side's WR crosses over as a 2nd tight end (27W L TO) — that side reads G T Y Y, the side he left is bare. Needs one odd surface and one even</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
-      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak</td></tr>
+      <tr><td><b>2-back tags</b></td><td>F Split (UC) · I I-form · K King · Q Queen · S Split (Gun) · T T-form · TS T-form strong side · KG/QG King/Queen from gun · SG/WG gun stack strong/weak · S2G/W2G/K2G/Q2G two-up gun (3 backs)</td></tr>
       <tr><td><b>Rules</b></td><td>Backs = 5 − total surface eligibles. 2 elig = 3 backs (no tag) · 5 elig = empty (no tag) · 6 elig = ILLEGAL</td></tr>
     </table>
   </details>
@@ -135,6 +135,10 @@ const TAGS = {
   SG:{backs:2, qb:"gun",   name:"Stack Gun strong"},
   WG:{backs:2, qb:"gun",   name:"Stack Gun weak"},
   FG:{backs:2, qb:"gun",   name:"Stack Gun weak"},   // legacy alias for WG
+  S2G:{backs:3, qb:"gun",  name:"Two-Up Gun strong"},
+  W2G:{backs:3, qb:"gun",  name:"Two-Up Gun weak"},
+  K2G:{backs:3, qb:"gun",  name:"Two-Up King Gun"},
+  Q2G:{backs:3, qb:"gun",  name:"Two-Up Queen Gun"},
 };
 
 /* Strength winners locked by the owner per surface pair (key: low digit + high
@@ -192,7 +196,7 @@ function backfieldLayout(tag, nBacks, str) {
   if (nBacks === 0) return {qb:{u:0, d:QB.gun}, backs:[]};                       // empty
   if (!tag && nBacks === 1) return {qb:{u:0, d:QB.gun}, backs:[{u:-str*1.5, d:4.6, lab:"T"}]};
   if (!tag && nBacks === 2) return {qb:{u:0, d:QB.gun}, backs:[{u:-1.5, d:4.4, lab:"F"}, {u:1.5, d:4.4, lab:"T"}]};
-  if (nBacks === 3) return {qb:{u:0, d:QB.uc}, backs:[                           // full house
+  if (nBacks === 3 && !tag) return {qb:{u:0, d:QB.uc}, backs:[                   // full house
     {u:0, d:3.2, lab:"F"}, {u:-1.7, d:5.2, lab:"R"}, {u:1.7, d:5.2, lab:"R"}]};
   switch (tag) {
     case "D": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:4.2, lab:"R"}]};
@@ -207,6 +211,12 @@ function backfieldLayout(tag, nBacks, str) {
     case "T": return {qb:{u:0, d:QB.uc},     backs:[{u:0, d:3.3, lab:"F"}, {u:-str*1.8, d:3.3, lab:"T"}]};
     case "TS": return {qb:{u:0, d:QB.uc},    backs:[{u:0, d:3.3, lab:"F"}, {u:str*1.8, d:3.3, lab:"T"}]};
     case "KG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.5, d:2.8, lab:"F"}, {u:-str*1.5, d:5.8, lab:"T"}]};
+    // Two-Up (3 back): a back in the B gap and one in the C gap a yard off the
+    // ball on the named side; the third takes the matching 2-back tag's spot.
+    case "S2G": return {qb:{u:0, d:QB.gun},  backs:[{u:str*1.5, d:1.0, lab:"F"}, {u:str*2.5, d:1.0, lab:"R"}, {u:str*1.5, d:5.8, lab:"T"}]};
+    case "W2G": return {qb:{u:0, d:QB.gun},  backs:[{u:-str*1.5, d:1.0, lab:"F"}, {u:-str*2.5, d:1.0, lab:"R"}, {u:-str*1.5, d:5.8, lab:"T"}]};
+    case "K2G": return {qb:{u:0, d:QB.gun},  backs:[{u:str*1.5, d:1.0, lab:"F"}, {u:str*2.5, d:1.0, lab:"R"}, {u:-str*1.5, d:5.8, lab:"T"}]};
+    case "Q2G": return {qb:{u:0, d:QB.gun},  backs:[{u:-str*1.5, d:1.0, lab:"F"}, {u:-str*2.5, d:1.0, lab:"R"}, {u:str*1.5, d:5.8, lab:"T"}]};
     case "QG": return {qb:{u:0, d:QB.gun},   backs:[{u:-str*1.5, d:2.8, lab:"F"}, {u:str*1.5, d:5.8, lab:"T"}]};
     case "SG": return {qb:{u:0, d:QB.gun},   backs:[{u:str*1.5, d:2.8, lab:"F"}, {u:str*1.5, d:5.8, lab:"T"}]};
     case "WG":
@@ -229,7 +239,7 @@ function parseCall(raw) {
   // Pokemon modifier. Spaces vanish on the next line, so settle it while they exist.
   const mod2 = /\sP$/.test(s) ? "[BW]" : "[BWP]";
   s = s.replace(/[\s\-\.\/]+/g, "");
-  const m = s.match(new RegExp(`^([1-8Q])([BWP])?([1-8Q])(${mod2})?(TS|QG|KG|SG|WG|FG|[DPLRFIKQST])?$`));
+  const m = s.match(new RegExp(`^([1-8Q])([BWP])?([1-8Q])(${mod2})?(S2G|W2G|K2G|Q2G|TS|QG|KG|SG|WG|FG|[DPLRFIKQST])?$`));
   if (!m) return {err:"Can't read that call. Format: <left#><mod?><right#><mod?> <tag?>, UB/TO last with a space — e.g. 24B I, 38W, 48P, 24 K UB, 17W L TO"};
 
   const surf = v => (v === "Q" ? "Q" : +v);            // Quad is a letter, not a digit
@@ -268,12 +278,13 @@ function parseCall(raw) {
   if (total > 5) return {err:`${left.n}${right.n} is ILLEGAL — ${total} surface eligibles (max is 5).`, illegal:true, left, right};
   const backs = 5 - total;
 
-  if (backs === 0 || backs === 3) {
-    if (tag) { warns.push(`${backs === 0 ? "Empty" : "3-back"} formations don't take a backfield tag — ignoring "${tag}".`); tag = null; }
-  } else if (!tag) {
-    warns.push(`No backfield tag — assuming Gun${backs === 2 ? " Split" : ""}.`);
+  if (!tag) {
+    if (backs === 1 || backs === 2)
+      warns.push(`No backfield tag — assuming Gun${backs === 2 ? " Split" : ""}.`);
   } else if (TAGS[tag].backs !== backs) {
-    warns.push(`${tag} is a ${TAGS[tag].backs}-back tag but ${left.n}${right.n} has ${backs} back${backs>1?"s":""} — assuming Gun${backs === 2 ? " Split" : ""}.`);
+    const fallback = (backs === 1 || backs === 2)
+      ? ` — assuming Gun${backs === 2 ? " Split" : ""}` : " — ignoring it";
+    warns.push(`${tag} is a ${TAGS[tag].backs}-back tag but ${left.n}${right.n} has ${backs} back${backs>1?"s":""}${fallback}.`);
     tag = null;
   }
 
@@ -287,9 +298,9 @@ function meaning(p) {
   if (p.ub) parts.push("Unbalanced");
   if (p.to) parts.push("TO (two TEs)");
   if (p.backs === 0) parts.push("Empty (no backs)");
+  else if (p.tag) parts.push(`${TAGS[p.tag].name} (${p.backs} back${p.backs>1?"s":""})`);
   else if (p.backs === 3) parts.push("Full house (3 backs)");
-  else if (!p.tag) parts.push(p.backs === 1 ? "Gun (1 back)" : "Gun Split (2 backs)");
-  else parts.push(`${TAGS[p.tag].name} (${p.backs} back${p.backs>1?"s":""})`);
+  else parts.push(p.backs === 1 ? "Gun (1 back)" : "Gun Split (2 backs)");
   return parts.join(" · ");
 }
 

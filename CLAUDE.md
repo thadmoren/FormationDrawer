@@ -73,6 +73,12 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   in QG, away from it in KG (opposite the fullback). **King and Queen are mirrors:
   any markup fix to one applies flipped to the other, including the G versions.**
   T = halfback up level with the fullback, weak side; TS = same but strong side.
+- **Two-Up tags (3 backs, gun): S2G · W2G · K2G · Q2G.** The first real 3-back tags —
+  before these, any tag on a 2-eligible formation was rejected. Two backs sit a yard
+  off the ball in the **B gap (1.5) and C gap (2.5)** on the named side; the third
+  takes the matching 2-back tag's tailback spot, which is what separates S2G from K2G
+  (third strong vs weak) and W2G from Q2G. Their names carry a digit, so they must
+  come FIRST in the tag alternation or `S` would match and leave `2G` dangling.
 - Strength is owner-locked per surface pair (winning surface listed; mirrors flip):
   12→1 · 13→3 · 14→1 · 15→5 · 16→1 · 17→7 · 18→1 · 23→3 · 24→4 · 25→5 · 26→6 ·
   27→7 · 28→8 · 34→3 · 35→3 · 36→3 · 45→5 · 56→5. Unlisted pairs (doubles, 46,
