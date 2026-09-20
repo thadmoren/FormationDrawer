@@ -74,6 +74,8 @@ Doubles (11, 22, …), 46, and the empty combos default strength to the right.
   the line beside the strength side's last lineman, so that line reads `G T Y Y`.
   The side he leaves is bare (just T G). TO needs one odd surface (the TE being
   doubled) and one even (the WR who crosses). e.g. `27W L TO`, `4W1 K TO`.
+- **Thor** / **Loki** (own word, last): both tackles to one side — Thor right, Loki
+  left. Receivers on that side slide out past the new end man. e.g. `12 KI THOR`.
 - **UB** (own word, last, space before): unbalanced — calls the opposite X over;
   he stays on the line and splits out far, covering the TE on a 1/3/5 side.
 

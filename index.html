@@ -69,7 +69,7 @@
 <div class="wrap">
   <h1>🏈 Formation Drawer</h1>
   <div class="sub">Type a call from the formation system (e.g. <b>24B I</b>) — get the diagram as a PNG.
-    <span class="ver">v2026.09.13h</span></div>
+    <span class="ver">v2026.09.13i</span></div>
 
   <div class="bar">
     <input id="call" placeholder="24B I" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -93,6 +93,7 @@
     <table>
       <tr><td><b>Surfaces</b></td><td>1 TE · 2 WR · 3 TE/Wing · 4 Twins · 5 TE/Pro · 6 Inverted Twins · 7 Trey · 8 Trips · Q Quad (4 eligibles, always empty backfield)</td></tr>
       <tr><td><b>Modifiers</b></td><td>B = Bunch (4, 7, 8; on 2, 5 = halfway in), W = Wing (4, 7, 8), P = Pokémon (4, 8, Q — the bunch set out wide; QP is a diamond) — put it right after the number: 24B, 8W3, 18P</td></tr>
+      <tr><td><b>Thor / Loki</b></td><td>Both tackles to one side — Thor right, Loki left. Goes last with a space (21 KI THOR); receivers on that side slide out past the new end man</td></tr>
       <tr><td><b>UB</b></td><td>Unbalanced — goes last with a space (24 K UB); calls the opposite X over. Pairs with even surfaces</td></tr>
       <tr><td><b>TO</b></td><td>Even side's WR crosses over as a 2nd tight end (27W L TO) — that side reads G T Y Y, the side he left is bare. Needs one odd surface and one even</td></tr>
       <tr><td><b>1-back tags</b></td><td>D Dot · P Pistol · L Gun Left · R Gun Right</td></tr>
@@ -232,10 +233,12 @@ function backfieldLayout(tag, nBacks, str) {
 function parseCall(raw) {
   let s = raw.toUpperCase().trim();
   if (!s) return {err:""};
-  let ub = false, to = false;          // UB and TO are trailing words, either order
-  for (let i = 0; i < 2; i++) {
-    if (/\sTO$/.test(s)) { to = true; s = s.replace(/\sTO$/, ""); continue; }
-    if (/\sUB$/.test(s)) { ub = true; s = s.replace(/\sUB$/, ""); continue; }
+  let ub = false, to = false, tackles = 0;   // trailing words, any order
+  for (let i = 0; i < 4; i++) {
+    if (/\sTHOR$/.test(s)) { tackles = 1;  s = s.replace(/\sTHOR$/, ""); continue; }
+    if (/\sLOKI$/.test(s)) { tackles = -1; s = s.replace(/\sLOKI$/, ""); continue; }
+    if (/\sTO$/.test(s))   { to = true;    s = s.replace(/\sTO$/, "");   continue; }
+    if (/\sUB$/.test(s))   { ub = true;    s = s.replace(/\sUB$/, "");   continue; }
     break;
   }
   // A trailing " P" with a space is the Pistol tag; "4P" attached to a number is the
@@ -291,7 +294,7 @@ function parseCall(raw) {
     tag = null;
   }
 
-  return {left, right, ub, to, tag, backs, total, warns};
+  return {left, right, ub, to, tackles, tag, backs, total, warns};
 }
 
 function meaning(p) {
@@ -300,6 +303,7 @@ function meaning(p) {
   const parts = [`${side(p.left)} left`, `${side(p.right)} right`];
   if (p.ub) parts.push("Unbalanced");
   if (p.to) parts.push("TO (two TEs)");
+  if (p.tackles) parts.push(p.tackles === 1 ? "Thor (tackles right)" : "Loki (tackles left)");
   if (p.backs === 0) parts.push("Empty (no backs)");
   else if (p.tag) parts.push(`${TAGS[p.tag].name} (${p.backs} back${p.backs>1?"s":""})`);
   else if (p.backs === 3) parts.push("Full house (3 backs)");
@@ -371,6 +375,11 @@ function drawFormation(p, callText) {
   // offensive line: C G G T T
   const line = [{u:0, lab:"C", style:"square"}, {u:-1, lab:"G"}, {u:1, lab:"G"},
                 {u:-2, lab:"T"}, {u:2, lab:"T"}];
+  if (p.tackles) {                     // Thor = both tackles right, Loki = both left
+    const sg = p.tackles;
+    line.length = 3;                   // keep C and both guards, re-place the tackles
+    line.push({u: sg * 2, lab:"T"}, {u: sg * 3, lab:"T"});
+  }
 
   // eligibles per side; UB pulls the weak side's outermost on-line man across,
   // landing on the line just outside the strength side's last on-line player
@@ -415,6 +424,16 @@ function drawFormation(p, callText) {
       for (const e of to) if (e.off && e.u > 4.5) e.u = (maxOn + xu) / 2;
     }
   }
+  if (p.tackles) {
+    // anything inside the new outside tackle slides out; the side keeps its spacing
+    const s = sides[String(p.tackles)];
+    const inner = Math.min(...s.map(e => e.u));
+    if (inner <= 3.9) {
+      const delta = 4.0 - inner;
+      s.forEach(e => { e.u = Math.min(e.u + delta, 8.6); });
+    }
+  }
+
   const skill = [];
   for (const sign of [-1, 1])
     for (const e of sides[String(sign)])
