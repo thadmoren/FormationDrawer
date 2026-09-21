@@ -58,6 +58,11 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
   W (6.1) and Z (8.3) flanking off the ball, H behind at 7.2 and 2.4 yards deep.
   That back man is the only player who uses an explicit `d` in `surfaceLayout` —
   every other entry gets its depth from the `off` flag (0 or 1.1).
+- **S (Stack, 8 only)**: the inside two receivers stack — Z up at 5.2 off the ball,
+  W directly behind him at 2.4 deep — with the X still on the line at 7.2.
+  Like P, **S doubles as a tag** (Split gun), resolved the same way: `18S` attached
+  is the Stack modifier, `14 S` spaced is the tag. `parseCall` builds the modifier
+  character class per call from those trailing-space checks.
   **P collides with the Pistol tag** once spaces are stripped, so `parseCall` checks
   for a trailing `" P"` *before* stripping: spaced (`18 P`) = Pistol, attached
   (`18P`) = Pokémon. Don't "simplify" that check away — it silently breaks Pistol.
