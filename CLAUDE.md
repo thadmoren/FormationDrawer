@@ -120,6 +120,24 @@ at `/opt/pw-browsers/chromium`, page via `file://`) before pushing. Small nudges
 - The embedded reference chart has two known self-inconsistencies (its `47B P` and
   `38W S` example rows contradict its own back-count math); the math wins.
 
+## Film section (play cutter)
+
+The `<details id="film">` block under the canvas, code under `/* ---------- film */`
+at the end of the script. A local video file is opened via object URL; **Find plays**
+*seeks* every `STEP` (1 s), grabs a 96×54 grayscale frame, and stores the per-mille of
+pixels whose luma moved >18 in `motion[]`. `detect()` = median-of-3 (kills camera-cut
+spikes) → 3-sample average → threshold between the median and 97th percentile set by
+the Sensitivity slider → merge gaps < 4 s, drop < 3 s, pad `PRE`/`POST` 2 s. Plays are
+`{s, e, call}` in seconds; everything persists in localStorage under
+`formationFilm:<name>:<size>`, and a stopped scan resumes from `motion.length`.
+**Don't switch the scan back to fast-forward playback**: at 8–16× browsers skip and
+repeat frames, which jittered edges by seconds and dropped whole plays in testing;
+seeking is exact. A play's diagram is drawn by putting its call in the main input,
+calling `update()`, and copying `cv` into `#fDiag`. "Download clip script" writes a
+bash script of ffmpeg cuts (re-encoded for frame-accurate starts) plus a concat into
+one condensed game. Test with a synthetic WebM (static noisy frames for dead time,
+`testsrc2` for plays) — headless Chromium has no H.264.
+
 ## UI conventions
 
 - **Recent** row: last 10 valid calls, recorded on pause/Enter/blur/download,
